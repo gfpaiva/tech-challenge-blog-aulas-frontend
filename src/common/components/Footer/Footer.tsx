@@ -1,0 +1,44 @@
+"use client";
+
+import Link from 'next/link';
+import { NavLink } from '../ui/NavLink/NavLink';
+import { Button } from '../ui/Button/Button';
+
+export function Footer() {
+  return (
+    <footer className="bg-base-300 text-base-content border-t border-base-200">
+
+      {/* Main Footer Content */}
+      <div className="footer p-10 container mx-auto">
+
+        {/* Brand Column */}
+        <aside className="max-w-xs">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity mb-2">
+            <span className="text-2xl font-bold font-serif text-base-content tracking-tight">
+              Blog Aulas
+            </span>
+          </Link>
+          <p className="opacity-70 text-sm">
+            Plataforma educacional focada em compartilhar conhecimento de qualidade entre professores e alunos.
+          </p>
+        </aside>
+
+        {/* Links - Plataforma */}
+        <nav>
+          <h6 className="footer-title">Plataforma</h6>
+          <NavLink href="/" text="Início" className="link link-hover" />
+          <NavLink href="/artigos" text="Todos os Artigos" className="link link-hover" />
+          <NavLink href="/disciplinas" text="Disciplinas" className="link link-hover" />
+        </nav>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="footer footer-center p-4 border-t border-base-200 text-base-content/70 text-xs">
+        <aside className="w-full flex flex-col md:flex-row items-center justify-between container mx-auto">
+          <p>© {new Date().getFullYear()} Blog Aulas. Feito com ❤️ por Guilherme Paiva</p>
+        </aside>
+      </div>
+
+    </footer>
+  );
+}
