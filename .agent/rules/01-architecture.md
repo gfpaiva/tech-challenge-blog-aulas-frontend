@@ -25,3 +25,7 @@ description: Front-end architecture patterns, features slicing, MVVM and Ports/A
 # 5. Coding Standards & Types
 - **Use `type`** for React Component Props and simple object definitions.
 - **Use `interface`** ONLY for Port/Adapters contracts (Hexagonal), classes, or complex models that require implementation or merging.
+
+# 6. Barrels e Nomenclaturas
+- **Sem Export Barrels:** Componentes não devem ter barrel export (`index.ts` com export). Utilize apenas o export do próprio componente.
+- **Sem Sufixo Dto:** Evite o sufixo "Dto" nas consts, types e schemas. Modelos e payloads não precisam manter este sufixo.

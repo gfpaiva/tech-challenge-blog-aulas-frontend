@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
+import { AdminDashboardView, AdminDashboardSkeleton } from "@/features/admin/posts/components/AdminDashboardView";
 import { appRoutes } from "@/common/config/routes";
 import type { Metadata } from "next";
 
@@ -10,10 +12,9 @@ export const metadata: Metadata = {
 export default function AdminDashboard() {
   return (
     <ProtectedRoute role="PROFESSOR">
-      <div className="p-8">
-        <h1 className="text-3xl font-bold text-primary">Painel do Professor</h1>
-        <p className="mt-4">Área administrativa protegida.</p>
-      </div>
+      <Suspense fallback={<AdminDashboardSkeleton />}>
+        <AdminDashboardView />
+      </Suspense>
     </ProtectedRoute>
   );
 }

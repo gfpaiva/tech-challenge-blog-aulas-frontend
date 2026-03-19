@@ -3,7 +3,7 @@ import { cn } from '@/common/lib/utils';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link';
+  variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   isCircle?: boolean;
 }
@@ -14,6 +14,7 @@ const variantStyles = {
   accent: 'btn-accent',
   ghost: 'btn-ghost',
   link: 'btn-link',
+  outline: 'btn-outline',
 } as const;
 
 const sizeStyles = {

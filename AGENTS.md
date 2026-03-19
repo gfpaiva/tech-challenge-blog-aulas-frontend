@@ -26,7 +26,7 @@ Interface Web responsiva construída com Next.js (Static Export) focada em profe
 2. **MVVM (Model-View-ViewModel):** 
    - *View (Componentes):* Componentes são "burros" (Dumb Components). Interagem via props. Não chamam APIs nem leem Zustand diretamente. Isso garante mockabilidade nativa para Testes e Storybook.
    - *ViewModel (Custom Hooks):* Toda a orquestração (estados, fetchs, submits) reside em hooks na pasta da feature (ex: `useCreatePostViewModel`).
-3. **Mappers:** Inputs nativos da API não passam pro frontend sujos. Todo e qualquer payload da API deve ser validado/transformado via Zod na criação de Modelos tipados.
+3. **Mappers:** Inputs nativos da API não passam pro frontend sujos. Todo e qualquer payload da API deve ser validado/transformado via Zod na criação de Modelos tipados. **Use `transform` do Zod para realizar mapeamentos complexos de forma declarativa e automática**, como formatação de datas pt-BR.
 4. **Features Slices:** Abandone o modelo de Atomic Design. Siga a estrutura Vertical Slices contidas em `src/features/`.
 5. **Componentização e UI Máxima (DaisyUI & Storybook):**
    - Maximize o uso de componentes/classes nativas do DaisyUI (https://daisyui.com/components/) em vez de construir layouts inteiramente "na mão" com Tailwind puro.
@@ -39,6 +39,9 @@ Interface Web responsiva construída com Next.js (Static Export) focada em profe
    - **Props:** Use `type` para definir as props de componentes React (ex: `type ButtonProps = { ... }`).
    - **Interface:** Reserve o uso de `interface` exclusivamente para contratos que necessitem implementação (`implements`), definições de classes, métodos de portas (Port/Adapter) ou modelos de dados complexos que se beneficiem de *declaration merging*.
 2. **Merge de Classes:** Utilize obrigatoriamente a função `cn(...inputs)` para qualquer interpolação ou união de classes Tailwind nos componentes.
+3. **Barrels e Nomenclaturas:** 
+   - **Sem Export Barrels:** Componentes não devem ter barrel export (`index.ts` com export). Utilize apenas o export do próprio componente.
+   - **Sem Sufixo Dto:** Evite o sufixo "Dto" nas consts, types e schemas. Modelos e payloads tipados não devem carregar este sufixo.
 
 ## 📁 Arquitetura de Pastas (Bulletproof / Hexagonal)
 ```text

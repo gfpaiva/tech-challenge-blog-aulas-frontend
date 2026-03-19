@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { NavLink } from '../ui/NavLink/NavLink';
+import { Logo } from '../ui/Logo/Logo';
 import { appRoutes } from '@/common/config/routes';
 
 export function Header() {
@@ -9,14 +10,7 @@ export function Header() {
     <div className="navbar bg-base-100/90 backdrop-blur-md border-b border-base-200 px-4 sm:px-8">
       <div className="navbar-start">
         {/* Logo */}
-        <Link href={appRoutes.home.path} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <div className="relative w-9 h-9 flex items-center justify-center overflow-hidden">
-            <Image src="/logo.png" alt="Blog Aulas" width={32} height={32} />
-          </div>
-          <span className="text-xl font-bold font-serif text-base-content tracking-tight">
-            Blog Aulas
-          </span>
-        </Link>
+        <Logo />
       </div>
 
       <div className="navbar-center hidden lg:flex">

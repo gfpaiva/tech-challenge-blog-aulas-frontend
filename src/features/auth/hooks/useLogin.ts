@@ -8,9 +8,10 @@ import { LoginRequest, LoginResponse } from '../types/login.types';
 import { loginApi } from '../api/login.api';
 import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
 import { useRouter } from 'next/navigation';
+import { appRoutes } from '@/common/config/routes';
 
 export const useLogin = () => {
-  const { setAuth, isAuthenticated, user } = useAuthStoreAdapter();
+  const { setAuth, clearAuth, isAuthenticated, user } = useAuthStoreAdapter();
   const router = useRouter();
 
   const form = useForm<LoginRequest>({
@@ -38,9 +39,15 @@ export const useLogin = () => {
     }
   };
 
+  const logout = (redirectPath: string = appRoutes.home.path) => {
+    clearAuth();
+    router.push(redirectPath);
+  };
+
   return {
     form,
     onSubmit: (redirectPath?: string) => form.handleSubmit((data) => onSubmit(data, redirectPath)),
+    logout,
     isPending: mutation.isPending,
     isError: mutation.isError,
     error: mutation.error,
