@@ -1,7 +1,6 @@
 import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/common/components/Header/Header";
-import { Footer } from "@/common/components/Footer/Footer";
+import { QueryProvider } from "@/infra/query/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const merriweather = Merriweather({
@@ -20,11 +19,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${merriweather.variable} antialiased`}
       >
-        <Header />
-        <main className="min-h-screen bg-base-100 text-base-content flex flex-col">
+        <QueryProvider>
           {children}
-        </main>
-        <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

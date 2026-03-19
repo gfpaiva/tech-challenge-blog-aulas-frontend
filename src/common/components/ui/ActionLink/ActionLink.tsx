@@ -1,17 +1,21 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { ComponentProps } from 'react';
+import { cn } from '@/common/lib/utils';
 
-interface ActionLinkProps extends Omit<ComponentProps<typeof Link>, 'href'> {
+type ActionLinkProps = Omit<ComponentProps<typeof Link>, 'href'> & {
   href: string;
   text: string;
-}
+};
 
-export function ActionLink({ href, text, className = '', ...props }: ActionLinkProps) {
+export function ActionLink({ href, text, className, ...props }: ActionLinkProps) {
   return (
-    <Link 
-      href={href} 
-      className={`group flex items-center gap-2 text-primary font-bold hover:text-primary-focus transition-colors shrink-0 w-fit ${className}`}
+    <Link
+      href={href}
+      className={cn(
+        'group flex items-center gap-2 text-primary font-bold hover:text-primary-focus transition-colors shrink-0 w-fit',
+        className
+      )}
       {...props}
     >
       {text}

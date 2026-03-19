@@ -30,7 +30,7 @@ export const Default: Story = {
     }
   },
   decorators: [
-    (Story) => (
+    (Story: any) => (
       <div className="w-[350px]">
         <Story />
       </div>

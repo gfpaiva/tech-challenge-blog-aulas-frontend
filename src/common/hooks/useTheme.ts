@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { useThemeStoreAdapter } from '@/infra/store/theme.adapter';
 import type { IThemePort } from '@/common/ports/theme.port';

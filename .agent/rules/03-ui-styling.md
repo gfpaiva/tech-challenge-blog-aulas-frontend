@@ -13,8 +13,9 @@ description: Visual styling rules covering Tailwind CSS v4, DaisyUI v5, and Typo
 - Setup DaisyUI themes to absorb these colors (`primary`, `accent`, `base-100`, `base-content`). 
 - Support Dark Mode dynamically using DaisyUI native data-theme toggles.
 
-# 2. TailwindCSS v4
+# 2. TailwindCSS v4 & Class Merging
 - Keep in mind spacing and modern utility classes. Avoid cluttering the HTML with massive classes if a simple semantic class from DaisyUI does the trick.
+- **Mandatory Class Merging:** ALWAYS use the `cn(...inputs)` utility (`src/common/lib/utils.ts`) to merge Tailwind/DaisyUI classes. Never use manual string concatenation or template literals for complex class merging.
 
 # 3. Typography
 - **Google Web Fonts** MUST be used:

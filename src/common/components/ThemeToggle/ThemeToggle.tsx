@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useTheme } from '@/common/hooks/useTheme';
 import { Sun, Moon } from 'lucide-react';

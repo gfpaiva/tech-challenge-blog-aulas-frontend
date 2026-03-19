@@ -1,16 +1,15 @@
-"use client";
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { NavLink } from '../ui/NavLink/NavLink';
+import { appRoutes } from '@/common/config/routes';
 
 export function Header() {
   return (
     <div className="navbar bg-base-100/90 backdrop-blur-md border-b border-base-200 px-4 sm:px-8">
       <div className="navbar-start">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <Link href={appRoutes.home.path} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <div className="relative w-9 h-9 flex items-center justify-center overflow-hidden">
             <Image src="/logo.png" alt="Blog Aulas" width={32} height={32} />
           </div>
@@ -23,16 +22,16 @@ export function Header() {
       <div className="navbar-center hidden lg:flex">
         {/* Navigation - Desktop */}
         <ul className="menu menu-horizontal px-1 gap-2">
-          <li><NavLink href="/" text="Início" className="hover:bg-transparent" /></li>
-          <li><NavLink href="/artigos" text="Artigos" className="hover:bg-transparent" /></li>
-          <li><NavLink href="/disciplinas" text="Disciplinas" className="hover:bg-transparent" /></li>
+          <li><NavLink href={appRoutes.home.path} text="Início" className="hover:bg-transparent" /></li>
+          <li><NavLink href={appRoutes.posts.path} text="Artigos" className="hover:bg-transparent" /></li>
+          <li><NavLink href={appRoutes.disciplinas.path} text="Disciplinas" className="hover:bg-transparent" /></li>
         </ul>
       </div>
 
       <div className="navbar-end flex gap-2 sm:gap-4">
         {/* Actions */}
         <Link
-          href="/area-docente"
+          href={appRoutes.adminDashboard.path}
           className="hidden sm:inline-flex text-sm font-semibold text-primary hover:text-primary-focus hover:-translate-y-0.5 transition-all"
         >
           Área Docente

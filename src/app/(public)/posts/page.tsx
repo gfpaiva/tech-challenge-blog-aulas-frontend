@@ -1,3 +1,11 @@
+import { appRoutes } from "@/common/config/routes";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: appRoutes.posts.title,
+  description: appRoutes.posts.description,
+};
+
 export default function PostsList() {
   return (
     <div className="container mx-auto p-8">

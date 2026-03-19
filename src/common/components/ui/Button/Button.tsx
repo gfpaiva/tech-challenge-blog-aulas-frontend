@@ -1,34 +1,44 @@
 import type { ReactNode, ButtonHTMLAttributes } from 'react';
+import { cn } from '@/common/lib/utils';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link';
   size?: 'sm' | 'md' | 'lg';
   isCircle?: boolean;
 }
 
-export function Button({ 
-  children, 
-  variant = 'primary', 
-  size = 'md', 
-  isCircle = false,
-  className = '', 
-  ...props 
-}: ButtonProps) {
-  const variantClass = variant === 'primary' ? 'btn-primary' :
-                       variant === 'secondary' ? 'btn-secondary' :
-                       variant === 'accent' ? 'btn-accent' :
-                       variant === 'ghost' ? 'btn-ghost' :
-                       'btn-link';
-                       
-  const sizeClass = size === 'sm' ? 'btn-sm' :
-                    size === 'lg' ? 'btn-lg' : '';
-                    
-  const circleClass = isCircle ? 'btn-circle' : '';
+const variantStyles = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  accent: 'btn-accent',
+  ghost: 'btn-ghost',
+  link: 'btn-link',
+} as const;
 
+const sizeStyles = {
+  sm: 'btn-sm',
+  md: '',
+  lg: 'btn-lg',
+} as const;
+
+export function Button({
+  children,
+  variant = 'primary',
+  size = 'md',
+  isCircle = false,
+  className,
+  ...props
+}: ButtonProps) {
   return (
-    <button 
-      className={`btn ${variantClass} ${sizeClass} ${circleClass} ${className}`}
+    <button
+      className={cn(
+        'btn',
+        variantStyles[variant],
+        sizeStyles[size],
+        isCircle && 'btn-circle',
+        className
+      )}
       {...props}
     >
       {children}

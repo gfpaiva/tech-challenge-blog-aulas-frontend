@@ -1,25 +1,50 @@
+'use client';
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginRequest, LoginResponse, loginRequestSchema } from '../mappers/login.mapper';
-import { httpAdapter } from '@/infra/http/axios.adapter';
+import { useMutation } from '@tanstack/react-query';
+import { loginRequestSchema } from '../mappers/login.mapper';
+import { LoginRequest, LoginResponse } from '../types/login.types';
+import { loginApi } from '../api/login.api';
 import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
+import { useRouter } from 'next/navigation';
 
 export const useLogin = () => {
-  const { setAuth, isAuthenticated } = useAuthStoreAdapter();
+  const { setAuth, isAuthenticated, user } = useAuthStoreAdapter();
+  const router = useRouter();
 
-  const form = useForm({
+  const form = useForm<LoginRequest>({
     resolver: zodResolver(loginRequestSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
-  const onLogin = async (data: LoginRequest) => {
-    try {
-      const response = await httpAdapter.post<LoginResponse, LoginRequest>('/auth/login', data);
-
-      setAuth(response.user, response.token);
-    } catch (error) {
+  const mutation = useMutation<LoginResponse, Error, LoginRequest>({
+    mutationFn: loginApi.login,
+    onSuccess: (data) => {
+      setAuth(data.user, data.token);
+    },
+    onError: (error) => {
       console.error("Falha no login", error);
+    }
+  });
+
+  const onSubmit = (data: LoginRequest, redirectPath?: string) => {
+    mutation.mutate(data);
+    if (mutation.isSuccess && redirectPath) {
+      router.push(redirectPath);
     }
   };
 
-  return { form, onLogin, isAuthenticated };
+  return {
+    form,
+    onSubmit: (redirectPath?: string) => form.handleSubmit((data) => onSubmit(data, redirectPath)),
+    isPending: mutation.isPending,
+    isError: mutation.isError,
+    error: mutation.error,
+    isAuthenticated,
+    user
+  };
 };

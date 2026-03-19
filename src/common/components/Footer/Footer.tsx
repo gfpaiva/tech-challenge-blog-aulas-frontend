@@ -1,8 +1,6 @@
-"use client";
-
 import Link from 'next/link';
 import { NavLink } from '../ui/NavLink/NavLink';
-import { Button } from '../ui/Button/Button';
+import { appRoutes } from '@/common/config/routes';
 
 export function Footer() {
   return (
@@ -13,7 +11,7 @@ export function Footer() {
 
         {/* Brand Column */}
         <aside className="max-w-xs">
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity mb-2">
+          <Link href={appRoutes.home.path} className="flex items-center gap-2 hover:opacity-80 transition-opacity mb-2">
             <span className="text-2xl font-bold font-serif text-base-content tracking-tight">
               Blog Aulas
             </span>
@@ -26,9 +24,9 @@ export function Footer() {
         {/* Links - Plataforma */}
         <nav>
           <h6 className="footer-title">Plataforma</h6>
-          <NavLink href="/" text="Início" className="link link-hover" />
-          <NavLink href="/artigos" text="Todos os Artigos" className="link link-hover" />
-          <NavLink href="/disciplinas" text="Disciplinas" className="link link-hover" />
+          <NavLink href={appRoutes.home.path} text="Início" hasActiveHighlight={false} className="link link-hover" />
+          <NavLink href={appRoutes.posts.path} text="Artigos" hasActiveHighlight={false} className="link link-hover" />
+          <NavLink href={appRoutes.disciplinas.path} text="Disciplinas" hasActiveHighlight={false} className="link link-hover" />
         </nav>
       </div>
 
