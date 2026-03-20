@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { loginRequestSchema } from '../mappers/login.mapper';
 import { LoginRequest, LoginResponse } from '../types/login.types';
-import { loginApi } from '../api/login.api';
+import { login } from '../api/login.api';
 import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
 import { useRouter } from 'next/navigation';
 import { appRoutes } from '@/common/config/routes';
@@ -23,7 +23,7 @@ export const useLogin = () => {
   });
 
   const mutation = useMutation<LoginResponse, Error, LoginRequest>({
-    mutationFn: loginApi.login,
+    mutationFn: login,
     onSuccess: (data) => {
       setAuth(data.user, data.token);
     },

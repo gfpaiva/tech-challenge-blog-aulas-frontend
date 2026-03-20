@@ -1,6 +1,7 @@
 import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/infra/query/QueryProvider";
+import { ToastContainer } from "@/common/components/ui/Toast/ToastContainer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const merriweather = Merriweather({
@@ -21,6 +22,7 @@ export default function RootLayout({
       >
         <QueryProvider>
           {children}
+          <ToastContainer />
         </QueryProvider>
       </body>
     </html>

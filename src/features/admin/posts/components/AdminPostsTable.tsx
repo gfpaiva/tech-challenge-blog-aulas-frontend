@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Table,
   TableHeader,
@@ -14,6 +14,7 @@ import { useAdminPosts } from '../hooks/useAdminPosts';
 import { Eye, Pencil, Trash2 } from 'lucide-react';
 import { Skeleton } from '@/common/components/ui/Skeleton';
 import { appRoutes } from '@/common/config/routes';
+import { cn } from '@/common/lib/utils';
 
 export function AdminPostsTable() {
   const { posts, meta, paginationState, actions, searchState } = useAdminPosts();
@@ -45,59 +46,69 @@ export function AdminPostsTable() {
               <TableHead className="w-32 text-center">Ações</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="transition-all duration-600 relative">
             {posts.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={3} className="text-center py-8 text-base-content/50">
+                <TableCell colSpan={4} className="text-center py-8 text-base-content/50">
                   Nenhuma aula encontrada.
                 </TableCell>
               </TableRow>
             ) : (
-              posts.map((post) => (
-                <TableRow key={post.id} className="group cursor-pointer">
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      <div>
-                        <div className="font-bold">{post.title}</div>
+              posts.map((post) => {
+                const isBeingDeleted = actions.isDeleting && actions.deletingId === post.id;
+                return (
+                  <TableRow
+                    key={post.id}
+                    className={cn(
+                      'group cursor-pointer transition-all duration-600 ease-in-out',
+                      isBeingDeleted ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
+                    )}
+                  >
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <div>
+                          <div className="font-bold">{post.title}</div>
+                        </div>
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <span className="text-sm font-medium">{post.subject}</span>
-                  </TableCell>
-                  <TableCell>
-                    <span className="text-sm text-base-content/80">{post.date}</span>
-                  </TableCell>
-                  <TableCell>
-                    {/* Hover actions */}
-                    <div className="flex justify-center items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="tooltip" data-tip="Ver">
-                        <a
-                          href={appRoutes.postDetail(post.id).path}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="btn btn-ghost btn-xs btn-circle text-primary"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </a>
+                    </TableCell>
+                    <TableCell>
+                      <span className="text-sm font-medium">{post.subject}</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="text-sm text-base-content/80">{post.date}</span>
+                    </TableCell>
+                    <TableCell>
+                      {/* Hover actions */}
+                      <div className="flex justify-center items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="tooltip" data-tip="Ver">
+                          <a
+                            href={appRoutes.postDetail(post.id).path}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn btn-ghost btn-xs btn-circle text-primary"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </a>
+                        </div>
+                        <div className="tooltip" data-tip="Editar">
+                          <button className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-primary">
+                            <Pencil className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <div className="tooltip tooltip-error" data-tip="Deletar">
+                          <button
+                            onClick={(e) => { e.stopPropagation(); handleDeleteClick(post.id); }}
+                            className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-error"
+                            disabled={isBeingDeleted}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
-                      <div className="tooltip" data-tip="Editar">
-                        <button className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-primary">
-                          <Pencil className="w-4 h-4" />
-                        </button>
-                      </div>
-                      <div className="tooltip tooltip-error" data-tip="Deletar">
-                        <button
-                          onClick={(e) => { e.stopPropagation(); handleDeleteClick(post.id); }}
-                          className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-error"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))
+                    </TableCell>
+                  </TableRow>
+                );
+              })
             )}
           </TableBody>
         </Table>

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { getAdminPosts } from '../api/get-admin-posts';
+import { useDeletePost } from './useDeletePost';
 
 export function useAdminPosts() {
   const router = useRouter();
@@ -15,6 +16,8 @@ export function useAdminPosts() {
     queryKey: ['adminPosts', { q, page, limit }],
     queryFn: () => getAdminPosts({ q, page, limit }),
   });
+
+  const deletePostMutation = useDeletePost();
 
   const createQueryString = (name: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -49,11 +52,6 @@ export function useAdminPosts() {
     router.replace(`${pathname}?${params.toString()}`);
   };
 
-  const deletePost = (id: string) => {
-    console.log('Action: delete post', id);
-    // Placeholder for actual mutation, then refetch()
-  };
-
   return {
     posts: data?.data || [],
     meta: data?.meta || { total: 0, page: 1, lastPage: 1 },
@@ -70,7 +68,9 @@ export function useAdminPosts() {
       setLimit,
     },
     actions: {
-      deletePost,
+      deletePost: deletePostMutation.mutate,
+      isDeleting: deletePostMutation.isPending,
+      deletingId: deletePostMutation.variables,
       refetch,
     },
   };

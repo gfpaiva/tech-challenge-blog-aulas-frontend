@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { LoginResponse } from '../types/login.types';
 
 export const loginRequestSchema = z.object({
   email: z.email('E-mail inválido'),
@@ -18,3 +19,9 @@ export const loginResponseSchema = z.object({
   user: data.user,
   token: data.access_token,
 }));
+
+export class LoginMapper {
+  static toViewModel(data: unknown): LoginResponse {
+    return loginResponseSchema.parse(data);
+  }
+}
