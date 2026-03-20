@@ -26,7 +26,6 @@ export function Footer() {
           <h6 className="footer-title">Plataforma</h6>
           <NavLink href={appRoutes.home.path} text="Início" hasActiveHighlight={false} className="link link-hover" />
           <NavLink href={appRoutes.posts.path} text="Aulas" hasActiveHighlight={false} className="link link-hover" />
-          <NavLink href={appRoutes.categories.path} text="Categorias" hasActiveHighlight={false} className="link link-hover" />
         </nav>
       </div>
 

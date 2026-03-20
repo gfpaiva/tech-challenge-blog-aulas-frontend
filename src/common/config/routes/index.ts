@@ -35,12 +35,6 @@ export const appRoutes = {
     description: 'Edite os detalhes de uma aula existente.',
     isPrivate: true,
   }),
-  categories: {
-    path: "/categorias",
-    isPrivate: false,
-    title: "Categorias | Blog Aulas",
-    description: "Explore as aulas por categorias.",
-  },
   // Function to generate dynamic route for specific article
   postDetail: (id: string | number) => ({
     path: `/aulas/${id}`,

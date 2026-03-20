@@ -1,10 +1,8 @@
-import { ArticleCard } from '../ArticleCard/ArticleCard';
-import type { Article } from '../../types/article.type';
-import { ActionLink } from '@/common/components/ui/ActionLink/ActionLink';
-import { appRoutes } from '@/common/config/routes';
+import type { Meta, StoryObj } from '@storybook/react';
+import { LatestPosts } from './LatestPosts';
+import { Post } from '../../types/post.type';
 
-// Mock data based on the screenshot provided
-const MOCK_LATEST_ARTICLES: Article[] = [
+const MOCK_LATEST_POSTS: Post[] = [
   {
     id: "1",
     title: "Introdução ao Pensamento Computacional",
@@ -46,30 +44,19 @@ const MOCK_LATEST_ARTICLES: Article[] = [
   }
 ];
 
-export function LatestArticles() {
-  return (
-    <section id="aulas" className="py-20 bg-base-100">
-      <div className="container mx-auto px-4">
+const meta = {
+  title: 'Features/Posting/LatestPosts',
+  component: LatestPosts,
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    posts: MOCK_LATEST_POSTS
+  },
+  tags: ['autodocs'],
+} satisfies Meta<typeof LatestPosts>;
 
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 border-b border-base-200 pb-6">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold font-serif text-base-content mb-2 tracking-tight">
-              Últimas Aulas
-            </h2>
-          </div>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-          <ActionLink href={appRoutes.posts.path} text="Ver todas" />
-        </div>
-
-        {/* Grid of Articles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {MOCK_LATEST_ARTICLES.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
+export const Default: Story = {};
