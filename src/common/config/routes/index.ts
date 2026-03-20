@@ -23,6 +23,12 @@ export const appRoutes = {
     title: "Login | Blog Aulas",
     description: "Acesse sua conta para gerenciar aulas e categorias.",
   },
+  createPost: {
+    path: "/admin/aulas/nova",
+    isPrivate: true,
+    title: "Nova Aula | Blog Aulas",
+    description: "Crie uma nova aula",
+  },
   categories: {
     path: "/categorias",
     isPrivate: false,
