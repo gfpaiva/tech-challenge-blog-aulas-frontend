@@ -23,12 +23,12 @@ export function Hero() {
 
           {/* Subtitle */}
           <p className="py-6 text-lg sm:text-xl text-base-content/70 max-w-2xl mx-auto leading-relaxed font-sans">
-            Explore os artigos e discussões criadas por professores e alunos para a sua <span className="text-accent">jornada educacional</span>.
+            Explore as aulas e discussões criadas por professores e alunos para a sua <span className="text-accent">jornada educacional</span>.
           </p>
 
           {/* Call to Action */}
           <Link
-            href="#artigos"
+            href="#aulas"
             className="btn btn-primary btn-lg rounded-full px-8 shadow-lg shadow-primary/20 hover:-translate-y-1 transition-transform"
           >
             Comece a Explorar

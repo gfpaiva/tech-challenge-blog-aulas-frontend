@@ -6,7 +6,7 @@ export const appRoutes = {
     description: "Plataforma de ensino e aprendizado.",
   },
   posts: {
-    path: "/posts",
+    path: "/aulas",
     isPrivate: false,
     title: "Aulas Publicadas | Blog Aulas",
     description: "Lista de todas as aulas publicadas pelos professores.",
@@ -21,17 +21,17 @@ export const appRoutes = {
     path: "/login",
     isPrivate: false,
     title: "Login | Blog Aulas",
-    description: "Acesse sua conta para gerenciar aulas e disciplinas.",
+    description: "Acesse sua conta para gerenciar aulas e categorias.",
   },
-  disciplinas: {
-    path: "/disciplinas",
+  categories: {
+    path: "/categorias",
     isPrivate: false,
-    title: "Disciplinas | Blog Aulas",
-    description: "Explore os artigos por disciplinas acadêmicas.",
+    title: "Categorias | Blog Aulas",
+    description: "Explore as aulas por categorias.",
   },
   // Function to generate dynamic route for specific article
   postDetail: (id: string | number) => ({
-    path: `/artigos/${id}`,
+    path: `/aulas/${id}`,
     isPrivate: false,
   }),
 } as const;

@@ -24,7 +24,7 @@ export function SearchInput() {
         <Search className="h-5 w-5 absolute left-3 top-1/2 -translate-y-1/2 text-base-content/50 z-10 pointer-events-none" />
         <Input
           type="search"
-          placeholder="Busque por artigos"
+          placeholder="Busque por aulas"
           className="pl-10"
           value={searchInput}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value)}

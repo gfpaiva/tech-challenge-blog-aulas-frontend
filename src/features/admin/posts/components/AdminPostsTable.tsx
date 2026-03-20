@@ -49,7 +49,7 @@ export function AdminPostsTable() {
             {posts.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={3} className="text-center py-8 text-base-content/50">
-                  Nenhum artigo encontrado.
+                  Nenhuma aula encontrada.
                 </TableCell>
               </TableRow>
             ) : (
@@ -106,7 +106,7 @@ export function AdminPostsTable() {
           <div className="flex justify-between items-center px-4 py-4 border-t border-base-200 bg-base-100">
             <div className="text-sm text-base-content/60">
               Mostrando {(meta.page - 1) * paginationState.limit + 1} de{' '}
-              {Math.min(meta.page * paginationState.limit, meta.total)} de um total de {meta.total} artigos
+              {Math.min(meta.page * paginationState.limit, meta.total)} de um total de {meta.total} aulas
             </div>
             <div>
               <Pagination
@@ -122,7 +122,7 @@ export function AdminPostsTable() {
       <Modal
         isOpen={deleteModalOpen}
         onClose={() => setDeleteModalOpen(false)}
-        title="Deletar Artigo"
+        title="Deletar Aula"
         actions={
           <>
             <Button variant="outline" onClick={() => setDeleteModalOpen(false)}>
@@ -134,7 +134,7 @@ export function AdminPostsTable() {
           </>
         }
       >
-        <p>Tem certeza que deseja deletar este artigo? Esta ação não pode ser desfeita.</p>
+        <p>Tem certeza que deseja deletar esta aula? Esta ação não pode ser desfeita.</p>
       </Modal>
     </>
   );
@@ -154,10 +154,8 @@ export function AdminPostsTableSkeleton() {
       {Array.from({ length: 5 }).map((_, i) => (
         <div key={i} className="flex justify-between items-center py-4 px-4 border-b border-base-200">
           <div className="flex items-center gap-4 w-1/3">
-            <Skeleton className="h-12 w-12 rounded-lg shrink-0" />
             <div className="flex flex-col gap-2 w-full">
               <Skeleton className="h-5 w-3/4" />
-              <Skeleton className="h-3 w-1/2" />
             </div>
           </div>
           <Skeleton className="h-5 w-24" />

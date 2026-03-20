@@ -23,7 +23,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={article.thumbnailUrl}
-          alt={`Capa do artigo: ${article.title}`}
+          alt={`Capa da aula: ${article.title}`}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </figure>

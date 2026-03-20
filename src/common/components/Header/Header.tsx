@@ -17,8 +17,8 @@ export function Header() {
         {/* Navigation - Desktop */}
         <ul className="menu menu-horizontal px-1 gap-2">
           <li><NavLink href={appRoutes.home.path} text="Início" className="hover:bg-transparent" /></li>
-          <li><NavLink href={appRoutes.posts.path} text="Artigos" className="hover:bg-transparent" /></li>
-          <li><NavLink href={appRoutes.disciplinas.path} text="Disciplinas" className="hover:bg-transparent" /></li>
+          <li><NavLink href={appRoutes.posts.path} text="Aulas" className="hover:bg-transparent" /></li>
+          <li><NavLink href={appRoutes.categories.path} text="Categorias" className="hover:bg-transparent" /></li>
         </ul>
       </div>
 

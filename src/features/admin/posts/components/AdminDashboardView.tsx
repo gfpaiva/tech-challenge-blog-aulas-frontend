@@ -41,7 +41,7 @@ export function AdminDashboardView() {
           {/* Top Control Bar */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-6 gap-4 border-b border-base-200">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-base-content mb-1">Artigos</h2>
+              <h2 className="text-2xl font-bold tracking-tight text-base-content mb-1">Aulas</h2>
               <p className="text-sm text-base-content/60">Gerencie, edite ou exclua o conteúdo publicado.</p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">

@@ -11,10 +11,9 @@ export function useAdminPosts() {
   const page = Number(searchParams.get('page')) || 1;
   const limit = Number(searchParams.get('limit')) || 10;
 
-  const { data, isLoading, error, isPlaceholderData, refetch } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['adminPosts', { q, page, limit }],
     queryFn: () => getAdminPosts({ q, page, limit }),
-    placeholderData: (previousData) => previousData,
   });
 
   const createQueryString = (name: string, value: string) => {
@@ -60,7 +59,6 @@ export function useAdminPosts() {
     meta: data?.meta || { total: 0, page: 1, lastPage: 1 },
     isLoading,
     error,
-    isPlaceholderData,
     searchState: {
       searchTerm: q,
       updateSearch,
