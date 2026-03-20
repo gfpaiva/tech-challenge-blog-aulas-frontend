@@ -29,6 +29,12 @@ export const appRoutes = {
     title: "Nova Aula | Blog Aulas",
     description: "Crie uma nova aula",
   },
+  editPost: (id: string) => ({
+    path: `/admin/aulas/editar?id=${id}`,
+    title: 'Editar Aula | Blog Aulas',
+    description: 'Edite os detalhes de uma aula existente.',
+    isPrivate: true,
+  }),
   categories: {
     path: "/categorias",
     isPrivate: false,

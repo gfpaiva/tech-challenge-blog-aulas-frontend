@@ -8,8 +8,15 @@ export interface CreatePostResponse {
   id: string;
   title: string;
   content: string;
-  categoryId: number;
-  authorId: string;
-  createdAt: string;
-  updatedAt: string;
+  creationDate: string;
+  updateDate: string;
+  author: {
+    id: string;
+    name: string;
+    role: string;
+  };
+  category: {
+    id: number;
+    name: string;
+  };
 }

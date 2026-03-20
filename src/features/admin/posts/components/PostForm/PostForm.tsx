@@ -6,17 +6,33 @@ import { Textarea } from '@/common/components/ui/Textarea/Textarea';
 import { FormRow } from '@/common/components/ui/FormRow/FormRow';
 import { Skeleton } from '@/common/components/ui/Skeleton';
 import { Button } from '@/common/components/ui/Button/Button';
-import { useCreatePost } from '../../hooks/useCreatePost';
+import { UseFormReturn } from 'react-hook-form';
+import { CreatePostFormData } from '../../mappers/create-post.mapper';
 
-export const CreatePostForm = () => {
-  const { form, onSubmit, isPending } = useCreatePost();
+export type PostFormProps = {
+  form: UseFormReturn<CreatePostFormData>;
+  onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
+  isPending: boolean;
+  submitLabel?: string;
+  title?: string;
+  description?: string;
+}
+
+export const PostForm = ({
+  form,
+  onSubmit,
+  isPending,
+  submitLabel = 'Publicar Aula',
+  title = 'Nova Aula',
+  description = 'Preencha os detalhes para publicar uma nova aula.'
+}: PostFormProps) => {
   const { register, formState: { errors } } = form;
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-6 w-full max-w-2xl bg-base-100 p-8 rounded-xl shadow-lg border border-base-200">
       <div className="mb-4">
-        <h2 className="text-2xl font-bold font-serif text-primary">Nova Aula</h2>
-        <p className="text-sm text-base-content/70 mt-1">Preencha os detalhes para publicar uma nova aula.</p>
+        <h2 className="text-2xl font-bold font-serif text-primary">{title}</h2>
+        <p className="text-sm text-base-content/70 mt-1">{description}</p>
       </div>
 
       <FormRow label="Título" error={errors.title?.message}>
@@ -56,14 +72,14 @@ export const CreatePostForm = () => {
           variant="primary"
           className="min-w-32"
         >
-          {isPending ? <span className="loading loading-spinner"></span> : 'Publicar Aula'}
+          {isPending ? <span className="loading loading-spinner"></span> : submitLabel}
         </Button>
       </div>
     </form>
   );
 };
 
-export const CreatePostFormSkeleton = () => {
+export const PostFormSkeleton = () => {
   return (
     <div className="flex flex-col gap-6 w-full max-w-2xl bg-base-100 p-8 rounded-xl shadow-lg border border-base-200">
       <div className="mb-4">

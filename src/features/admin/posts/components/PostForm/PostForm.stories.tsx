@@ -1,13 +1,37 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { CreatePostForm } from './CreatePostForm';
+import { PostForm } from './PostForm';
 import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CreatePostSchema, CreatePostFormData } from '../../mappers/create-post.mapper';
 
-// Setup isolated QueryClient for Storybook
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false } },
 });
+
+const FormWrapper = () => {
+  const form = useForm<CreatePostFormData>({
+    resolver: zodResolver(CreatePostSchema) as any,
+    defaultValues: {
+      title: 'Título da Aula',
+      categoryId: 1,
+      content: 'Conteúdo de exemplo...',
+    },
+  });
+
+  return (
+    <PostForm 
+      form={form} 
+      onSubmit={async (e) => { e?.preventDefault(); }} 
+      isPending={false} 
+      submitLabel="Publicar Aula" 
+      title="Nova Aula" 
+      description="Preencha os detalhes para publicar uma nova aula." 
+    />
+  );
+};
 
 const withProviders = (Story: any) => {
   useEffect(() => {
@@ -27,9 +51,9 @@ const withProviders = (Story: any) => {
   );
 };
 
-const meta: Meta<typeof CreatePostForm> = {
-  title: 'Features/Admin/Posts/CreatePostForm',
-  component: CreatePostForm,
+const meta: Meta<typeof PostForm> = {
+  title: 'Features/Admin/Posts/PostForm',
+  component: PostForm,
   decorators: [withProviders],
   parameters: {
     nextjs: {
@@ -42,6 +66,8 @@ const meta: Meta<typeof CreatePostForm> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CreatePostForm>;
+type Story = StoryObj<typeof PostForm>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <FormWrapper />
+};

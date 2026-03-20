@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import {
   Table,
   TableHeader,
@@ -91,9 +92,9 @@ export function AdminPostsTable() {
                           </a>
                         </div>
                         <div className="tooltip" data-tip="Editar">
-                          <button className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-primary">
+                          <Link href={appRoutes.editPost(post.id).path} className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-primary">
                             <Pencil className="w-4 h-4" />
-                          </button>
+                          </Link>
                         </div>
                         <div className="tooltip tooltip-error" data-tip="Deletar">
                           <button

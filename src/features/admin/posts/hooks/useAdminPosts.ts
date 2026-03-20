@@ -3,6 +3,8 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { getAdminPosts } from '../api/get-admin-posts';
 import { useDeletePost } from './useDeletePost';
 
+export const GET_ADMIN_POSTS_QUERY_KEY = 'adminPosts';
+
 export function useAdminPosts() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -13,7 +15,7 @@ export function useAdminPosts() {
   const limit = Number(searchParams.get('limit')) || 10;
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['adminPosts', { q, page, limit }],
+    queryKey: [GET_ADMIN_POSTS_QUERY_KEY, { q, page, limit }],
     queryFn: () => getAdminPosts({ q, page, limit }),
   });
 

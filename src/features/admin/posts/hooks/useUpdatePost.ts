@@ -4,11 +4,14 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { appRoutes } from '@/common/config/routes';
 import { CreatePostSchema, CreatePostFormData, CreatePostMapper } from '../mappers/create-post.mapper';
-import { createPost } from '../api/create-post.api';
+import { updatePost } from '../api/update-post.api';
 import { useToastStore } from '@/infra/store/toast.adapter';
+import { useEffect } from 'react';
+import { CreatePostResponse } from '../types/create-post.type';
+import { GET_POST_DETAIL_QUERY_KEY } from './usePostDetail';
 import { GET_ADMIN_POSTS_QUERY_KEY } from './useAdminPosts';
 
-export const useCreatePost = () => {
+export const useUpdatePost = (postDetail?: CreatePostResponse) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const success = useToastStore((state) => state.success);
@@ -23,18 +26,32 @@ export const useCreatePost = () => {
     },
   });
 
+  useEffect(() => {
+    if (postDetail) {
+      form.reset({
+        title: postDetail.title,
+        categoryId: postDetail.category.id,
+        content: postDetail.content,
+      });
+    }
+  }, [postDetail, form]);
+
   const mutation = useMutation({
     mutationFn: (data: CreatePostFormData) => {
+      if (!postDetail) throw new Error('Post Detail not loaded');
       const payload = CreatePostMapper.toPayload(data);
-      return createPost(payload);
+      return updatePost(postDetail.id, payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [GET_ADMIN_POSTS_QUERY_KEY] });
-      success('Aula criada com sucesso!');
+      if (postDetail) {
+        queryClient.invalidateQueries({ queryKey: [GET_POST_DETAIL_QUERY_KEY, postDetail.id] });
+      }
+      success('Aula atualizada com sucesso!');
       router.push(appRoutes.adminDashboard.path);
     },
     onError: () => {
-      error('Ocorreu um erro ao criar a aula. Tente novamente.');
+      error('Ocorreu um erro ao atualizar a aula. Tente novamente.');
     }
   });
 
@@ -46,8 +63,5 @@ export const useCreatePost = () => {
     form,
     onSubmit,
     isPending: mutation.isPending,
-    isError: mutation.isError,
-    isSuccess: mutation.isSuccess,
-    error: mutation.error,
   };
 };
