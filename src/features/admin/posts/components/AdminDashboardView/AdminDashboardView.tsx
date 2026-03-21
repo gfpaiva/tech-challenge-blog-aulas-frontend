@@ -1,9 +1,8 @@
 'use client';
 
-import { useAdminPosts } from '../hooks/useAdminPosts';
-import { AdminHeader } from './AdminHeader';
-import { SearchInput } from './SearchInput';
-import { AdminPostsTable, AdminPostsTableSkeleton } from './AdminPostsTable';
+import { useAdminPosts } from '../../hooks/useAdminPosts';
+import { SearchInput } from '../SearchInput/SearchInput';
+import { AdminPostsTable, AdminPostsTableSkeleton } from '../AdminPostsTable/AdminPostsTable';
 import { Skeleton } from '@/common/components/ui/Skeleton';
 
 export function AdminDashboardSkeleton() {

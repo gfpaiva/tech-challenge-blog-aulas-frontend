@@ -11,7 +11,7 @@ import {
 import { Pagination } from '@/common/components/ui/Pagination';
 import { Modal } from '@/common/components/ui/Modal';
 import { Button } from '@/common/components/ui/Button/Button';
-import { useAdminPosts } from '../hooks/useAdminPosts';
+import { useAdminPosts } from '../../hooks/useAdminPosts';
 import { Eye, Pencil, Trash2 } from 'lucide-react';
 import { Skeleton } from '@/common/components/ui/Skeleton';
 import { appRoutes } from '@/common/config/routes';

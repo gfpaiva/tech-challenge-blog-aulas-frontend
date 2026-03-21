@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/common/components/ui/Input/Input';
-import { useAdminPosts } from '../hooks/useAdminPosts';
+import { useAdminPosts } from '../../hooks/useAdminPosts';
 
 export function SearchInput() {
   const { searchState: { searchTerm, updateSearch } } = useAdminPosts();

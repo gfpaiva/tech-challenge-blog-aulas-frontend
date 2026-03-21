@@ -1,6 +1,6 @@
 'use client';
 
-import { AdminHeader } from "@/features/admin/posts/components/AdminHeader";
+import { AdminHeader } from "@/features/admin/posts/components/AdminHeader/AdminHeader";
 
 export default function Template({ children }: { children: React.ReactNode }) {
     return (

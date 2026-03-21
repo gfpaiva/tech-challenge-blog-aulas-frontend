@@ -196,7 +196,7 @@ Acesse [http://localhost:3001](http://localhost:3001) (ou a porta exibida no ter
 | Tipo | Ferramenta | Foco |
 |---|---|---|
 | **Unit / Integration** | Vitest | Mappers, hooks, lógica de domínio |
-| **Visual / Component** | Storybook + addon-vitest | Componentes UI isolados (Dumb) |
+| **Visual / Component** | JSDom e react-testing-library | Componentes UI isolados (Dumb) |
 
 ### Comandos de Teste
 

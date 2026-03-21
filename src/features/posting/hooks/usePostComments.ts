@@ -34,8 +34,8 @@ export function usePostComments(postId: string, initialComments: Comment[]) {
     },
   });
 
-  const onSubmit = form.handleSubmit(async (data) => {
-    await mutation.mutateAsync(data.content);
+  const onSubmit = form.handleSubmit((data) => {
+    mutation.mutate(data.content);
   });
 
   return {
