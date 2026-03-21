@@ -2,9 +2,9 @@ import { Avatar } from '@/common/components/ui/Avatar/Avatar';
 
 import type { Comment } from '../../types/post.type';
 
-type CommentCardProps = {
+type CommentCardProps = Readonly<{
   comment: Comment;
-};
+}>;
 
 export function CommentCard({ comment }: CommentCardProps) {
   const avatarSrc = `https://ui-avatars.com/api/?name=${encodeURIComponent(comment.authorName)}&background=random&color=fff&bold=true`;

@@ -3,7 +3,7 @@ import { forwardRef, useState } from 'react';
 
 import { Input, type InputProps } from '../Input/Input';
 
-export type PasswordInputProps = Omit<InputProps, 'type'>;
+export type PasswordInputProps = Readonly<Omit<InputProps, 'type'>>;
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(({ className, ...props }, ref) => {
   const [showPassword, setShowPassword] = useState(false);

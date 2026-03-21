@@ -2,9 +2,11 @@ import { forwardRef, SelectHTMLAttributes } from 'react';
 
 import { cn } from '@/common/lib/utils';
 
-export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
-  error?: boolean;
-};
+export type SelectProps = Readonly<
+  SelectHTMLAttributes<HTMLSelectElement> & {
+    error?: boolean;
+  }
+>;
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ className, error, children, ...props }, ref) => {
   return (

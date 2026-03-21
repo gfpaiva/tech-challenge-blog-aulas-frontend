@@ -3,12 +3,12 @@ import { useEffect, useRef } from 'react';
 import type { Post } from '../../types/post.type';
 import { PostCard, PostCardSkeleton } from '../PostCard/PostCard';
 
-type PublicPostsListProps = {
+type PublicPostsListProps = Readonly<{
   posts: Post[];
   hasNextPage?: boolean;
   isFetchingNextPage?: boolean;
   onLoadMore?: () => void;
-};
+}>;
 
 export function PublicPostsList({ posts, hasNextPage, isFetchingNextPage, onLoadMore }: PublicPostsListProps) {
   const observerTarget = useRef<HTMLDivElement>(null);

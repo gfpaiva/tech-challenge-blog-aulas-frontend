@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 
 import { cn } from '@/common/lib/utils';
 
-type FormRowProps = {
+type FormRowProps = Readonly<{
   label: string;
   error?: string;
   className?: string;
   children: ReactNode;
-};
+}>;
 
 export const FormRow = ({ label, error, className, children }: FormRowProps) => {
   return (

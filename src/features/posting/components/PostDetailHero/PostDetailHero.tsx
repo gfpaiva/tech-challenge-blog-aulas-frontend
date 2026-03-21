@@ -2,9 +2,9 @@ import { Calendar, User, Clock } from 'lucide-react';
 
 import type { PostDetail } from '../../types/post.type';
 
-type PostDetailHeroProps = {
+type PostDetailHeroProps = Readonly<{
   post: PostDetail;
-};
+}>;
 
 export function PostDetailHero({ post }: PostDetailHeroProps) {
   return (

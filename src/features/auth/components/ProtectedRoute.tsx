@@ -8,10 +8,10 @@ import { User } from '@/common/types/user';
 
 import { useLogin } from '../hooks/useLogin';
 
-type ProtectedRouteProps = {
+type ProtectedRouteProps = Readonly<{
   role?: User['role'];
   children: React.ReactNode;
-};
+}>;
 
 export const ProtectedRoute = ({ children, role }: ProtectedRouteProps) => {
   const { isAuthenticated, user } = useLogin();

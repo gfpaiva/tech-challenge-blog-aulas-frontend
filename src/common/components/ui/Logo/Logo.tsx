@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { appRoutes } from '@/common/config/routes';
 import { cn } from '@/common/lib/utils';
 
-type LogoProps = {
+type LogoProps = Readonly<{
   className?: string;
-};
+}>;
 
 export function Logo({ className }: LogoProps) {
   return (

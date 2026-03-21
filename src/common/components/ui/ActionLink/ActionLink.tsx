@@ -4,10 +4,12 @@ import type { ComponentProps } from 'react';
 
 import { cn } from '@/common/lib/utils';
 
-type ActionLinkProps = Omit<ComponentProps<typeof Link>, 'href'> & {
-  href: string;
-  text: string;
-};
+type ActionLinkProps = Readonly<
+  Omit<ComponentProps<typeof Link>, 'href'> & {
+    href: string;
+    text: string;
+  }
+>;
 
 export function ActionLink({ href, text, className, ...props }: ActionLinkProps) {
   return (

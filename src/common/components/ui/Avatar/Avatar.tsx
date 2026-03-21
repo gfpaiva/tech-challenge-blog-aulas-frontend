@@ -2,13 +2,15 @@ import React from 'react';
 
 import { cn } from '@/common/lib/utils';
 
-export type AvatarProps = React.HTMLAttributes<HTMLDivElement> & {
-  src?: string;
-  initials?: string;
-  alt?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  shape?: 'circle' | 'square';
-};
+export type AvatarProps = Readonly<
+  React.HTMLAttributes<HTMLDivElement> & {
+    src?: string;
+    initials?: string;
+    alt?: string;
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    shape?: 'circle' | 'square';
+  }
+>;
 
 const sizeClasses = {
   xs: 'w-6 h-6 text-xs',
