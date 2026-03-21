@@ -1,8 +1,8 @@
+![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Next.js](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) ![SonarCloud](https://img.shields.io/badge/SonarCloud-F3702A?style=for-the-badge&logo=sonarcloud&logoColor=white) ![Snyk](https://img.shields.io/badge/Snyk-4C4A73?style=for-the-badge&logo=snyk&logoColor=white) ![New Relic](https://img.shields.io/badge/New_Relic-008C99?style=for-the-badge&logo=newrelic&logoColor=white)
+
 # Tech Challenge: Blog Aulas — Frontend
 
 > Interface Web responsiva construída com **Next.js** do "Blog Aulas", conectando professores e alunos.
-
-**🔗 Backend API:** [tech-challenge-blog-aulas-backend.onrender.com](https://tech-challenge-blog-aulas-backend.onrender.com/health) · [Repositório Backend](https://github.com/gfpaiva/tech-challenge-blog-aulas-backend)
 
 ---
 
@@ -19,6 +19,8 @@
 - [Mapa de Rotas](#mapa-de-rotas)
 - [Testes](#testes)
 - [CI/CD e Deploy](#cicd-e-deploy)
+- [Observabilidade](#observabilidade)
+
 
 ---
 
@@ -213,7 +215,7 @@ pnpm test:coverage         # Gera relatório detalhado de cobertura (/coverage)
 
 ---
 
-## Qualidade e Padronização
+## Qualidade, Segurança e Padronização
 
 O projeto utiliza um pipeline rigoroso de qualidade local para garantir que nenhum código "sujo" chegue ao repositório remoto.
 
@@ -238,6 +240,14 @@ Utilizamos **Conventional Commits** para facilitar o versionamento automático e
 - `fix(auth):` Correção de bugs.
 - `refactor(ui):` Mudança estrutural sem alterar comportamento.
 - `chore:` Tarefas de manutenção ou dependências.
+
+### 4. Análise de Qualidade e Segurança (SonarCloud & Snyk)
+
+O projeto integra ferramentas automatizadas para garantir a saúde e segurança do código:
+
+- **SonarCloud:** Realiza análise estática completa para identificar bugs, vulnerabilidades (SAST) e medir a cobertura de testes. Integrado via GitHub Actions no processo de PR.
+- **Snyk:** Monitora as dependências do projeto em busca de vulnerabilidades em bibliotecas de terceiros, garantindo a integridade.
+
 
 ---
 
@@ -282,7 +292,16 @@ pnpm build
 
 ---
 
----
+## Observabilidade
+
+Para monitoramento em tempo real e análise de performance no navegador, utilizamos o **New Relic**.
+
+### New Relic Browser (RUM)
+
+A aplicação está instrumentada com o agente de browser do New Relic para:
+- **Core Web Vitals:** Acompanhamento de métricas reais de experiência do usuário (LCP, INP, CLS).
+- **Error Tracking:** Captura proativa de erros de JavaScript e falhas de requisição em produção.
+
 
 ---
 
@@ -296,3 +315,7 @@ pnpm build
 | DaisyUI Components     | [daisyui.com/components](https://daisyui.com/components/)                                                                                                |
 | TanStack Query Docs    | [tanstack.com/query/v5](https://tanstack.com/query/v5)                                                                                                   |
 | Next.js Static Export  | [nextjs.org/docs/app/building-your-application/deploying/static-exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) |
+| SonarCloud Project     | [sonarcloud.io/summary/new_code?id=gfpaiva_tech-challenge-blog-aulas-frontend](https://sonarcloud.io/summary/new_code?id=gfpaiva_tech-challenge-blog-aulas-frontend) |
+| Snyk Safety Search     | [snyk.io/vuln](https://snyk.io/vuln)                                                                                                                     |
+| New Relic Dashboard    | [one.newrelic.com](https://one.newrelic.com)                                                                                                             |
+
