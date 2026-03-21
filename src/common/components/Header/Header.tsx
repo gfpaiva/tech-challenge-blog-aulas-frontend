@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
-import { NavLink } from '../ui/NavLink/NavLink';
-import { Logo } from '../ui/Logo/Logo';
+
 import { appRoutes } from '@/common/config/routes';
+
+import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
+import { Logo } from '../ui/Logo/Logo';
+import { NavLink } from '../ui/NavLink/NavLink';
 
 export function Header() {
   return (
@@ -16,8 +17,12 @@ export function Header() {
       <div className="navbar-center hidden lg:flex">
         {/* Navigation - Desktop */}
         <ul className="menu menu-horizontal px-1 gap-2">
-          <li><NavLink href={appRoutes.home.path} text="Início" className="hover:bg-transparent" /></li>
-          <li><NavLink href={appRoutes.posts.path} text="Aulas" className="hover:bg-transparent" /></li>
+          <li>
+            <NavLink href={appRoutes.home.path} text="Início" className="hover:bg-transparent" />
+          </li>
+          <li>
+            <NavLink href={appRoutes.posts.path} text="Aulas" className="hover:bg-transparent" />
+          </li>
         </ul>
       </div>
 

@@ -12,7 +12,7 @@ export class HttpError extends Error {
   constructor(
     public status: number,
     public data: any,
-    message?: string
+    message?: string,
   ) {
     super(message || `HTTP Error ${status}`);
     this.name = 'HttpError';

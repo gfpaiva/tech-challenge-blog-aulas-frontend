@@ -67,9 +67,9 @@ const doFetch = async <T>(method: string, url: string, data?: unknown, config?: 
   const requestKey = `${method}:${finalUrl}`;
 
   const baseController = handleDebounceAndThrottle(requestKey, config);
-  
+
   if (baseController.signal.aborted) {
-     return Promise.reject(baseController.signal.reason);
+    return Promise.reject(baseController.signal.reason);
   }
 
   // Setup Timeout
@@ -126,7 +126,7 @@ const doFetch = async <T>(method: string, url: string, data?: unknown, config?: 
     if (config?.debounce || config?.throttle) {
       const current = pendingRequests.get(requestKey);
       if (current?.controller === baseController) {
-         pendingRequests.delete(requestKey);
+        pendingRequests.delete(requestKey);
       }
     }
   }

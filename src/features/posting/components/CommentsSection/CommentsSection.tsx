@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { MessageCircle, Send } from 'lucide-react';
-import { Textarea } from '@/common/components/ui/Textarea/Textarea';
+import { useEffect, useState } from 'react';
+
 import { Button } from '@/common/components/ui/Button/Button';
-import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
+import { Textarea } from '@/common/components/ui/Textarea/Textarea';
 import { appRoutes } from '@/common/config/routes';
+import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
+
 import { usePostComments } from '../../hooks/usePostComments';
-import { CommentCard } from '../CommentCard/CommentCard';
 import type { Comment } from '../../types/post.type';
+import { CommentCard } from '../CommentCard/CommentCard';
 
 type CommentsSectionProps = {
   postId: string;
@@ -29,6 +31,7 @@ export function CommentsSection({ postId, initialComments }: CommentsSectionProp
   // Hydration guard: only read Zustand state after client mount
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -42,20 +45,14 @@ export function CommentsSection({ postId, initialComments }: CommentsSectionProp
         <h2 className="text-xl font-bold font-serif text-base-content">
           Comentários
           {comments.length > 0 && (
-            <span className="ml-2 badge badge-primary badge-sm align-middle">
-              {comments.length}
-            </span>
+            <span className="ml-2 badge badge-primary badge-sm align-middle">{comments.length}</span>
           )}
         </h2>
       </div>
 
       {/* Comment Form — only for authenticated users, after hydration */}
       {mounted && isAuthenticated && (
-        <form
-          onSubmit={onSubmit}
-          className="mb-10"
-          aria-label="Formulário de comentário"
-        >
+        <form onSubmit={onSubmit} className="mb-10" aria-label="Formulário de comentário">
           <div className="flex flex-col gap-2">
             <Textarea
               id="comment-content"
@@ -72,18 +69,8 @@ export function CommentsSection({ postId, initialComments }: CommentsSectionProp
             )}
           </div>
           <div className="flex justify-end mt-3">
-            <Button
-              type="submit"
-              variant="primary"
-              size="sm"
-              disabled={isSubmitting}
-              className="gap-2"
-            >
-              {isSubmitting ? (
-                <span className="loading loading-spinner loading-xs" />
-              ) : (
-                <Send className="w-4 h-4" />
-              )}
+            <Button type="submit" variant="primary" size="sm" disabled={isSubmitting} className="gap-2">
+              {isSubmitting ? <span className="loading loading-spinner loading-xs" /> : <Send className="w-4 h-4" />}
               Publicar comentário
             </Button>
           </div>

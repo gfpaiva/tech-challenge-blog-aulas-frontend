@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { cn } from '@/common/lib/utils';
 
 export type ModalProps = {
@@ -9,17 +10,9 @@ export type ModalProps = {
   actions?: React.ReactNode;
   className?: string;
   hideCloseButton?: boolean;
-}
+};
 
-export function Modal({
-  isOpen,
-  onClose,
-  title,
-  children,
-  actions,
-  className,
-  hideCloseButton = false,
-}: ModalProps) {
+export function Modal({ isOpen, onClose, title, children, actions, className, hideCloseButton = false }: ModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -42,11 +35,7 @@ export function Modal({
 
         <div className="py-2">{children}</div>
 
-        {actions && (
-          <div className="modal-action mt-6 gap-2">
-            {actions}
-          </div>
-        )}
+        {actions && <div className="modal-action mt-6 gap-2">{actions}</div>}
       </div>
 
       <form method="dialog" className="modal-backdrop">

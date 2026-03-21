@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+
 import { Button } from './Button';
 
 describe('Button Component', () => {
@@ -22,7 +23,7 @@ describe('Button Component', () => {
     // lg
     const { rerender } = render(<Button size="lg">Large</Button>);
     expect(screen.getByRole('button', { name: /large/i })).toHaveClass('btn-lg');
-    
+
     // sm
     rerender(<Button size="sm">Small</Button>);
     expect(screen.getByRole('button', { name: /small/i })).toHaveClass('btn-sm');
@@ -41,9 +42,9 @@ describe('Button Component', () => {
   it('calls onClick handler when clicked', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
-    
+
     fireEvent.click(screen.getByRole('button', { name: /click me/i }));
-    
+
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });

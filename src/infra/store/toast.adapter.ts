@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { IToastPort, ToastMessage } from '@/common/ports/toast.port';
 
 const generateId = () => Math.random().toString(36).substring(2, 9);

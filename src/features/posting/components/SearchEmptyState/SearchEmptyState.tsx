@@ -8,7 +8,9 @@ export function SearchEmptyState({ query }: { query: string }) {
       </div>
       <h3 className="text-2xl font-bold font-serif text-base-content mb-3">Nenhuma aula encontrada</h3>
       <p className="text-base-content/70 max-w-md">
-        Não conseguimos encontrar resultados para o termo <strong className="text-base-content">"{query}"</strong>. Tente buscar com outras palavras-chave ou verifique a ortografia.
+        Não conseguimos encontrar resultados para o termo{' '}
+        <strong className="text-base-content">&quot;{query}&quot;</strong>. Tente buscar com outras palavras-chave ou
+        verifique a ortografia.
       </p>
     </div>
   );

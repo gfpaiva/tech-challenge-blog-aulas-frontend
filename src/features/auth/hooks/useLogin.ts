@@ -1,15 +1,17 @@
 'use client';
 
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { appRoutes } from '@/common/config/routes';
+import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
+
+import { login } from '../api/login.api';
 import { loginRequestSchema } from '../mappers/login.mapper';
 import { LoginRequest, LoginResponse } from '../types/login.types';
-import { login } from '../api/login.api';
-import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
-import { useRouter } from 'next/navigation';
-import { appRoutes } from '@/common/config/routes';
 
 export const useLogin = () => {
   const { setAuth, clearAuth, isAuthenticated, user } = useAuthStoreAdapter();
@@ -31,8 +33,8 @@ export const useLogin = () => {
       router.push(redirectPathRef.current ?? appRoutes.adminDashboard.path);
     },
     onError: (error) => {
-      console.error("Falha no login", error);
-    }
+      console.error('Falha no login', error);
+    },
   });
 
   const onSubmit = (data: LoginRequest, redirectPath?: string) => {
@@ -53,6 +55,6 @@ export const useLogin = () => {
     isError: mutation.isError,
     error: mutation.error,
     isAuthenticated,
-    user
+    user,
   };
 };

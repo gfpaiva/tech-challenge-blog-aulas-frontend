@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
-import { LoginForm } from '@/features/auth';
+
 import { appRoutes } from '@/common/config/routes';
+import { LoginForm } from '@/features/auth';
 
 export const metadata: Metadata = {
   title: appRoutes.login.title,

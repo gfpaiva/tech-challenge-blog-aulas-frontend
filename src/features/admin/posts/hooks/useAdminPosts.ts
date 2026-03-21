@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+
 import { getAdminPosts } from '../api/get-admin-posts';
+
 import { useDeletePost } from './useDeletePost';
 
 export const GET_ADMIN_POSTS_QUERY_KEY = 'adminPosts';

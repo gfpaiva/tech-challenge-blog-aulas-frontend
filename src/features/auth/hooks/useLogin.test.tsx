@@ -1,10 +1,13 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { useLogin } from './useLogin';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
+import { renderHook, act } from '@testing-library/react';
 import { useRouter } from 'next/navigation';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
+
+import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
+
 import { login } from '../api/login.api';
+
+import { useLogin } from './useLogin';
 
 vi.mock('@/infra/store/auth.adapter');
 vi.mock('next/navigation');
@@ -20,7 +23,7 @@ describe('useLogin Hook', () => {
     queryClient = new QueryClient({
       defaultOptions: { mutations: { retry: false, networkMode: 'always' } },
     });
-    
+
     mockSetAuth = vi.fn();
     mockClearAuth = vi.fn();
     mockPush = vi.fn();
@@ -31,9 +34,9 @@ describe('useLogin Hook', () => {
       isAuthenticated: false,
       user: null as any,
     });
-    
+
     vi.mocked(useRouter).mockReturnValue({ push: mockPush } as any);
-    
+
     vi.mocked(login).mockResolvedValue({
       user: { id: '1', name: 'Test', email: 'test@test.com', role: 'PROFESSOR' },
       token: 'jwt-123',
@@ -56,7 +59,7 @@ describe('useLogin Hook', () => {
 
   // Testing onSubmit directly with RHF validation inside JSDOM is brittle.
   // We will rely on E2E/Integration DOM tests for the login form logic.
-  
+
   it('logout clears auth and pushes to path', () => {
     const { result } = renderHook(() => useLogin(), { wrapper });
 

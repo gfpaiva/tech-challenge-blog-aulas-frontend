@@ -1,22 +1,62 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+import nextConfig from 'eslint-config-next';
+import prettierPlugin from 'eslint-plugin-prettier';
 
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+export default [
+  ...nextConfig,
+  {
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
+      '@next/next/no-img-element': 'off',
+      'import/no-restricted-paths': [
+        'error',
+        {
+          zones: [
+            { target: './src/features', from: './src/app' },
+            { target: ['./src/common', './src/infra'], from: ['./src/features', './src/app'] },
+          ],
+        },
+      ],
+      'import/no-cycle': 'error',
+      'linebreak-style': ['error', 'unix'],
+      'react/prop-types': 'off',
+      'import/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+      'import/default': 'off',
+      'import/no-named-as-default-member': 'off',
+      'import/no-named-as-default': 'off',
+      'react/react-in-jsx-scope': 'off',
+      'jsx-a11y/anchor-is-valid': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-empty-function': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    },
+  },
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-  ...storybook.configs["flat/recommended"]
-]);
-
-export default eslintConfig;
+  {
+    ignores: [
+      'node_modules',
+      'public',
+      'generators',
+      '.next',
+      'out',
+      'dist',
+      'coverage',
+      'storybook-static',
+      'commitlint.config.js',
+      'eslint.config.mjs',
+      'jest.config.js',
+    ],
+  },
+];

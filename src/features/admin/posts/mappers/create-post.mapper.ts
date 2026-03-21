@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { CreatePostRequest } from '../types/create-post.type';
 
 export const CreatePostSchema = z.object({

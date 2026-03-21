@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { cn } from '@/common/lib/utils';
 
 export type AvatarProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -7,7 +8,7 @@ export type AvatarProps = React.HTMLAttributes<HTMLDivElement> & {
   alt?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   shape?: 'circle' | 'square';
-}
+};
 
 const sizeClasses = {
   xs: 'w-6 h-6 text-xs',
@@ -37,9 +38,7 @@ export function Avatar({
         {src ? (
           <img src={src} alt={alt} />
         ) : (
-          <span className="flex items-center justify-center w-full h-full font-medium">
-            {initials || 'A'}
-          </span>
+          <span className="flex items-center justify-center w-full h-full font-medium">{initials || 'A'}</span>
         )}
       </div>
     </div>

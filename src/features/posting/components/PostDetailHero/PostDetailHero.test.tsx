@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import { PostDetailHero } from './PostDetailHero';
 
 describe('PostDetailHero Component', () => {
@@ -14,7 +15,7 @@ describe('PostDetailHero Component', () => {
       publishedAt: '01/01/2024',
       readTimeMin: 5,
       authorId: 'auth-1',
-      authorConfig: { name: 'Hero Author', avatarUrl: '' }
+      authorConfig: { name: 'Hero Author', avatarUrl: '' },
     };
 
     render(<PostDetailHero post={mockPost as any} />);

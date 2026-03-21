@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { PostSearchInput } from './PostSearchInput';
 
 const meta = {

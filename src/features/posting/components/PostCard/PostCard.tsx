@@ -1,9 +1,11 @@
-import Link from 'next/link';
 import { Calendar } from 'lucide-react';
-import { Skeleton } from '@/common/components/ui/Skeleton/Skeleton';
-import type { Post } from '../../types/post.type';
-import { appRoutes } from '@/common/config/routes';
+import Link from 'next/link';
+
 import { ActionLink } from '@/common/components/ui/ActionLink/ActionLink';
+import { Skeleton } from '@/common/components/ui/Skeleton/Skeleton';
+import { appRoutes } from '@/common/config/routes';
+
+import type { Post } from '../../types/post.type';
 
 type PostCardProps = {
   post: Post;
@@ -12,7 +14,6 @@ type PostCardProps = {
 export function PostCard({ post }: PostCardProps) {
   return (
     <article className="card bg-base-100 shadow-[0_0_0_1px_var(--fallback-b2,oklch(var(--b2)))] hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
-
       {/* Thumbnail Area */}
       <figure className="relative w-full aspect-[4/3] bg-base-200 m-0 p-0">
         {/* Category Badge absolutely positioned */}
@@ -22,7 +23,7 @@ export function PostCard({ post }: PostCardProps) {
           </span>
         </div>
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {}
         <img
           src={post.thumbnailUrl}
           alt={`Capa da aula: ${post.title}`}
@@ -32,7 +33,6 @@ export function PostCard({ post }: PostCardProps) {
 
       {/* Content Area */}
       <div className="card-body p-6 flex flex-col gap-0">
-
         {/* Metadata */}
         <div className="flex items-center gap-4 text-xs text-base-content/60 mb-3 font-medium">
           <div className="flex items-center gap-1.5">
@@ -49,18 +49,19 @@ export function PostCard({ post }: PostCardProps) {
         </h3>
 
         {/* Summary */}
-        <p className="text-sm text-base-content/70 line-clamp-3 mb-6 flex-grow-0">
-          {post.summary}
-        </p>
+        <p className="text-sm text-base-content/70 line-clamp-3 mb-6 flex-grow-0">{post.summary}</p>
 
         {/* Footer (Author & Bookmark) */}
         <div className="card-actions justify-between items-center mt-auto pt-4 border-t border-base-200/60 relative z-20 w-full">
           <div className="flex items-center gap-3">
             <div className="avatar">
               <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {}
                 <img
-                  src={post.authorConfig.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.authorConfig.name)}&background=random`}
+                  src={
+                    post.authorConfig.avatarUrl ||
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(post.authorConfig.name)}&background=random`
+                  }
                   alt={post.authorConfig.name}
                 />
               </div>
@@ -69,7 +70,6 @@ export function PostCard({ post }: PostCardProps) {
           </div>
           <ActionLink href={appRoutes.postDetail(post.id).path} text="Ver mais" />
         </div>
-
       </div>
     </article>
   );

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import { Header } from './Header';
 
 // Mock routing and ThemeToggle since it connects to a store
@@ -15,7 +16,7 @@ describe('Header Component', () => {
   it('renders logo and navigation links', () => {
     // Arrange & Act
     render(<Header />);
-    
+
     // Assert
     expect(screen.getByRole('link', { name: /blog aulas/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Início' })).toBeInTheDocument();
@@ -26,7 +27,7 @@ describe('Header Component', () => {
   it('renders ThemeToggle', () => {
     // Arrange & Act
     render(<Header />);
-    
+
     // Assert
     expect(screen.getByTestId('theme-toggle')).toBeInTheDocument();
   });

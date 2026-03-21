@@ -1,9 +1,11 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { useUpdatePost } from './useUpdatePost';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { useRouter } from 'next/navigation';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
+
 import { updatePost } from '../api/update-post.api';
+
+import { useUpdatePost } from './useUpdatePost';
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
@@ -62,7 +64,7 @@ describe('useUpdatePost Hook', () => {
     const { result } = renderHook(() => useUpdatePost(mockPostDetail), { wrapper });
 
     result.current.form.setValue('title', 'New Title');
-    
+
     act(() => {
       result.current.onSubmit();
     });

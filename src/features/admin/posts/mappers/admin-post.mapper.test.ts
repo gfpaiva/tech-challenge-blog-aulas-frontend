@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { AdminPostMapper } from './admin-post.mapper';
 
 describe('AdminPostMapper', () => {
@@ -14,13 +15,13 @@ describe('AdminPostMapper', () => {
           category: { id: 1, name: 'Technology' },
           creationDate: '2023-10-10T10:00:00.000Z',
           updateDate: '2023-10-10T11:00:00.000Z',
-        }
+        },
       ],
       meta: {
         total: 10,
         page: 1,
         lastPage: 2,
-      }
+      },
     };
 
     // Act
@@ -41,7 +42,7 @@ describe('AdminPostMapper', () => {
     // Arrange
     const invalidData = {
       data: [{ id: 'not-a-uuid' }],
-      meta: { total: 0 }
+      meta: { total: 0 },
     };
 
     // Act & Assert

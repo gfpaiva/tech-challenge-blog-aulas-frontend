@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AdminPostsTable } from './AdminPostsTable';
+
 import { httpAdapter } from '@/infra/http/fetch.adapter';
+
+import { AdminPostsTable } from './AdminPostsTable';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false } },
@@ -18,7 +20,7 @@ const withMockedApi = (Story: any) => {
           { id: '1', title: 'Introdução ao Storybook', subject: 'Português', date: '10/10/2023' },
           { id: '2', title: 'Matemática Avançada', subject: 'Matemática', date: '11/10/2023' },
         ],
-        meta: { total: 2, page: 1, lastPage: 1 }
+        meta: { total: 2, page: 1, lastPage: 1 },
       } as any;
     }
     return originalGet(url);

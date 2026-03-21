@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Select } from './Select';
 
 const meta: Meta<typeof Select> = {
@@ -11,7 +12,9 @@ const meta: Meta<typeof Select> = {
   },
   render: (args) => (
     <Select {...args} defaultValue="">
-      <option value="" disabled>Selecione uma opção</option>
+      <option value="" disabled>
+        Selecione uma opção
+      </option>
       <option value="1">Opção 1</option>
       <option value="2">Opção 2</option>
     </Select>

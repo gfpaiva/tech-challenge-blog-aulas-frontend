@@ -1,13 +1,14 @@
-import { Inter, Merriweather } from "next/font/google";
-import "./globals.css";
-import { QueryProvider } from "@/infra/query/QueryProvider";
-import { ToastContainer } from "@/common/components/ui/Toast/ToastContainer";
+import { Inter, Merriweather } from 'next/font/google';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+import './globals.css';
+import { ToastContainer } from '@/common/components/ui/Toast/ToastContainer';
+import { QueryProvider } from '@/infra/query/QueryProvider';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const merriweather = Merriweather({
-  weight: ["300", "400", "700"],
-  subsets: ["latin"],
-  variable: "--font-merriweather",
+  weight: ['300', '400', '700'],
+  subsets: ['latin'],
+  variable: '--font-merriweather',
 });
 
 export default function RootLayout({
@@ -17,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" data-theme="blog">
-      <body
-        className={`${inter.variable} ${merriweather.variable} antialiased`}
-      >
+      <body className={`${inter.variable} ${merriweather.variable} antialiased`}>
         <QueryProvider>
           {children}
           <ToastContainer />

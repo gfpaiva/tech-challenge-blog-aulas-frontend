@@ -1,4 +1,5 @@
 import { httpAdapter } from '@/infra/http/fetch.adapter';
+
 import { AdminPostMapper } from '../mappers/admin-post.mapper';
 import { AdminPostResponse } from '../types/admin-post.type';
 
@@ -11,7 +12,7 @@ export interface GetAdminPostsParams {
 export const getAdminPosts = async (params: GetAdminPostsParams): Promise<AdminPostResponse> => {
   const { q, page = 1, limit = 10 } = params;
 
-  const endpoint = (q && q.length >= 3) ? '/posts/search' : '/posts';
+  const endpoint = q && q.length >= 3 ? '/posts/search' : '/posts';
 
   const queryParams: Record<string, string | number> = {};
 

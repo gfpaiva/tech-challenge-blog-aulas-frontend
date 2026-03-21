@@ -1,8 +1,9 @@
-import { Avatar } from '@/common/components/ui/Avatar';
-import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
-import { Logo } from '@/common/components/ui/Logo/Logo';
 import { LogOut } from 'lucide-react';
+
+import { Avatar } from '@/common/components/ui/Avatar';
+import { Logo } from '@/common/components/ui/Logo/Logo';
 import { useLogin } from '@/features/auth/hooks/useLogin';
+import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
 
 export function AdminHeader() {
   const { user } = useAuthStoreAdapter();

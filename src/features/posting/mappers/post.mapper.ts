@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import type { Post, PostDetail, Comment } from '../types/post.type';
 
 // Helper to determine loremflickr category keyword
@@ -29,11 +30,11 @@ type BasePostRaw = z.infer<typeof BasePostResponseSchema>;
 
 const mapBasePost = (item: BasePostRaw, imageSize: string) => {
   const summary = item.content.length > 120 ? item.content.substring(0, 120) + '...' : item.content;
-  
+
   const publishedAt = new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
     month: 'short',
-    year: 'numeric'
+    year: 'numeric',
   }).format(new Date(item.creationDate));
 
   const categoryKeyword = getCategoryKeyword(item.category.id, item.category.name);
@@ -77,30 +78,32 @@ export const PaginatedPostsResponseSchema = z.object({
 export type PostResponse = z.infer<typeof PostResponseSchema>;
 export type PaginatedPostsResponse = z.infer<typeof PaginatedPostsResponseSchema>;
 
-export const CommentResponseSchema = z.object({
-  id: z.string(),
-  content: z.string(),
-  author: z.object({
-    name: z.string(),
-    role: z.string().optional(),
-  }),
-  creationDate: z.string(),
-}).transform((item): Comment => {
-  const publishedAt = new Intl.DateTimeFormat('pt-BR', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(new Date(item.creationDate));
+export const CommentResponseSchema = z
+  .object({
+    id: z.string(),
+    content: z.string(),
+    author: z.object({
+      name: z.string(),
+      role: z.string().optional(),
+    }),
+    creationDate: z.string(),
+  })
+  .transform((item): Comment => {
+    const publishedAt = new Intl.DateTimeFormat('pt-BR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(new Date(item.creationDate));
 
-  return {
-    id: item.id,
-    content: item.content,
-    authorName: item.author.name,
-    publishedAt,
-  };
-});
+    return {
+      id: item.id,
+      content: item.content,
+      authorName: item.author.name,
+      publishedAt,
+    };
+  });
 
 export const CommentsListResponseSchema = z.array(CommentResponseSchema);
 

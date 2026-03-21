@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
@@ -11,16 +11,8 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/common/**', 'src/features/**'],
-      exclude: [
-        '**/*.stories.*', 
-        '**/*.test.*', 
-        '**/types/**', 
-        '**/ports/**', 
-        '**/api/**', 
-        '**/index.ts',
-        '**/*.d.ts'
-      ],
+      exclude: ['**/*.stories.*', '**/*.test.*', '**/types/**', '**/ports/**', '**/api/**', '**/index.ts', '**/*.d.ts'],
       reporter: ['text', 'html'],
-    }
+    },
   },
 });

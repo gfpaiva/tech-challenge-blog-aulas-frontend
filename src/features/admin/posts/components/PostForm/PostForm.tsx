@@ -1,12 +1,14 @@
 'use client';
 
+import { UseFormReturn } from 'react-hook-form';
+
+import { Button } from '@/common/components/ui/Button/Button';
+import { FormRow } from '@/common/components/ui/FormRow/FormRow';
 import { Input } from '@/common/components/ui/Input/Input';
 import { Select } from '@/common/components/ui/Select/Select';
-import { Textarea } from '@/common/components/ui/Textarea/Textarea';
-import { FormRow } from '@/common/components/ui/FormRow/FormRow';
 import { Skeleton } from '@/common/components/ui/Skeleton';
-import { Button } from '@/common/components/ui/Button/Button';
-import { UseFormReturn } from 'react-hook-form';
+import { Textarea } from '@/common/components/ui/Textarea/Textarea';
+
 import { CreatePostFormData } from '../../mappers/create-post.mapper';
 
 export type PostFormProps = {
@@ -16,7 +18,7 @@ export type PostFormProps = {
   submitLabel?: string;
   title?: string;
   description?: string;
-}
+};
 
 export const PostForm = ({
   form,
@@ -24,12 +26,18 @@ export const PostForm = ({
   isPending,
   submitLabel = 'Publicar Aula',
   title = 'Nova Aula',
-  description = 'Preencha os detalhes para publicar uma nova aula.'
+  description = 'Preencha os detalhes para publicar uma nova aula.',
 }: PostFormProps) => {
-  const { register, formState: { errors } } = form;
+  const {
+    register,
+    formState: { errors },
+  } = form;
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-6 w-full max-w-2xl bg-base-100 p-8 rounded-xl shadow-lg border border-base-200">
+    <form
+      onSubmit={onSubmit}
+      className="flex flex-col gap-6 w-full max-w-2xl bg-base-100 p-8 rounded-xl shadow-lg border border-base-200"
+    >
       <div className="mb-4">
         <h2 className="text-2xl font-bold font-serif text-primary">{title}</h2>
         <p className="text-sm text-base-content/70 mt-1">{description}</p>
@@ -45,11 +53,7 @@ export const PostForm = ({
       </FormRow>
 
       <FormRow label="Categoria" error={errors.categoryId?.message}>
-        <Select
-          {...register('categoryId')}
-          error={!!errors.categoryId}
-          disabled={isPending}
-        >
+        <Select {...register('categoryId')} error={!!errors.categoryId} disabled={isPending}>
           <option value="1">Português</option>
           <option value="2">Matemática</option>
         </Select>
@@ -66,12 +70,7 @@ export const PostForm = ({
       </FormRow>
 
       <div className="flex justify-end gap-4 mt-4">
-        <Button
-          type="submit"
-          disabled={isPending}
-          variant="primary"
-          className="min-w-32"
-        >
+        <Button type="submit" disabled={isPending} variant="primary" className="min-w-32">
           {isPending ? <span className="loading loading-spinner"></span> : submitLabel}
         </Button>
       </div>

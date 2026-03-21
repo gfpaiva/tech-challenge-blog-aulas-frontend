@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+
 import { appRoutes } from '@/common/config/routes';
 import { getPublicPosts } from '@/features/posting/api/get-public-posts.api';
 import { PublicPostsContainer } from '@/features/posting/components/PublicPostsContainer/PublicPostsContainer';

@@ -1,21 +1,16 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from '@/common/components/ui/Table';
-import { Pagination } from '@/common/components/ui/Pagination';
-import { Modal } from '@/common/components/ui/Modal';
-import { Button } from '@/common/components/ui/Button/Button';
-import { useAdminPosts } from '../../hooks/useAdminPosts';
 import { Eye, Pencil, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+
+import { Button } from '@/common/components/ui/Button/Button';
+import { Modal } from '@/common/components/ui/Modal';
+import { Pagination } from '@/common/components/ui/Pagination';
 import { Skeleton } from '@/common/components/ui/Skeleton';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/common/components/ui/Table';
 import { appRoutes } from '@/common/config/routes';
 import { cn } from '@/common/lib/utils';
+
+import { useAdminPosts } from '../../hooks/useAdminPosts';
 
 export function AdminPostsTable() {
   const { posts, meta, paginationState, actions, searchState } = useAdminPosts();
@@ -62,7 +57,7 @@ export function AdminPostsTable() {
                     key={post.id}
                     className={cn(
                       'group cursor-pointer transition-all duration-600 ease-in-out',
-                      isBeingDeleted ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
+                      isBeingDeleted ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100',
                     )}
                   >
                     <TableCell>
@@ -92,13 +87,19 @@ export function AdminPostsTable() {
                           </a>
                         </div>
                         <div className="tooltip" data-tip="Editar">
-                          <Link href={appRoutes.editPost(post.id).path} className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-primary">
+                          <Link
+                            href={appRoutes.editPost(post.id).path}
+                            className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-primary"
+                          >
                             <Pencil className="w-4 h-4" />
                           </Link>
                         </div>
                         <div className="tooltip tooltip-error" data-tip="Deletar">
                           <button
-                            onClick={(e) => { e.stopPropagation(); handleDeleteClick(post.id); }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteClick(post.id);
+                            }}
                             className="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-error"
                             disabled={isBeingDeleted}
                           >
@@ -121,11 +122,7 @@ export function AdminPostsTable() {
               {Math.min(meta.page * paginationState.limit, meta.total)} de um total de {meta.total} aulas
             </div>
             <div>
-              <Pagination
-                currentPage={meta.page}
-                totalPages={meta.lastPage}
-                onPageChange={paginationState.setPage}
-              />
+              <Pagination currentPage={meta.page} totalPages={meta.lastPage} onPageChange={paginationState.setPage} />
             </div>
           </div>
         )}

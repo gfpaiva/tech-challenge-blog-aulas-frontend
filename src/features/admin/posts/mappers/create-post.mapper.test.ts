@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { CreatePostMapper } from './create-post.mapper';
 
 describe('CreatePostMapper', () => {

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { searchPosts } from '../api/search-posts.api';
 
 export const SEARCH_KEY = 'search-posts';

@@ -1,15 +1,16 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import { PostSearchInput } from './PostSearchInput';
 
 describe('PostSearchInput Component', () => {
   it('renders correctly and calls onChange', () => {
     const mockOnChange = vi.fn();
     render(<PostSearchInput value="test" onChange={mockOnChange} />);
-    
+
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('test');
-    
+
     fireEvent.change(input, { target: { value: 'testing' } });
     expect(mockOnChange).toHaveBeenCalledWith('testing');
   });

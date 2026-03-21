@@ -2,16 +2,21 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import { useLogin } from '../../hooks/useLogin';
+
+import { Button } from '@/common/components/ui/Button/Button';
+import { FormRow } from '@/common/components/ui/FormRow/FormRow';
 import { Input } from '@/common/components/ui/Input/Input';
 import { PasswordInput } from '@/common/components/ui/PasswordInput/PasswordInput';
-import { FormRow } from '@/common/components/ui/FormRow/FormRow';
-import { Button } from '@/common/components/ui/Button/Button';
 import { appRoutes } from '@/common/config/routes';
+
+import { useLogin } from '../../hooks/useLogin';
 
 export const LoginForm = () => {
   const { form, onSubmit, isPending, isError, isAuthenticated } = useLogin();
-  const { register, formState: { errors } } = form;
+  const {
+    register,
+    formState: { errors },
+  } = form;
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirectTo') ?? undefined;
 
@@ -58,12 +63,7 @@ export const LoginForm = () => {
         </div>
       )}
 
-      <Button
-        type="submit"
-        className="w-full mt-4"
-        disabled={isPending}
-        variant="primary"
-      >
+      <Button type="submit" className="w-full mt-4" disabled={isPending} variant="primary">
         {isPending ? <span className="loading loading-spinner"></span> : 'Entrar'}
       </Button>
     </form>

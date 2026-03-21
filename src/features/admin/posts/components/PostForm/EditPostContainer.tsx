@@ -1,14 +1,16 @@
 'use client';
 
-import { PostForm, PostFormSkeleton } from './PostForm';
+import { useSearchParams } from 'next/navigation';
+
 import { usePostDetail } from '../../hooks/usePostDetail';
 import { useUpdatePost } from '../../hooks/useUpdatePost';
-import { useSearchParams } from 'next/navigation';
+
+import { PostForm, PostFormSkeleton } from './PostForm';
 
 export const EditPostContainer = () => {
   const searchParams = useSearchParams();
   const postId = searchParams.get('id') as string;
-  
+
   const { data: postDetail, isLoading } = usePostDetail(postId);
   const { form, onSubmit, isPending } = useUpdatePost(postDetail);
 
@@ -21,13 +23,13 @@ export const EditPostContainer = () => {
   }
 
   return (
-    <PostForm 
-      form={form} 
-      onSubmit={onSubmit} 
-      isPending={isPending} 
-      submitLabel="Salvar Alterações" 
-      title="Editar Aula" 
-      description="Faça as edições necessárias nesta aula." 
+    <PostForm
+      form={form}
+      onSubmit={onSubmit}
+      isPending={isPending}
+      submitLabel="Salvar Alterações"
+      title="Editar Aula"
+      description="Faça as edições necessárias nesta aula."
     />
   );
 };

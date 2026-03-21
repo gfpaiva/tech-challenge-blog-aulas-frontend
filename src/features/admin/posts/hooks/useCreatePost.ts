@@ -1,11 +1,14 @@
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+
 import { appRoutes } from '@/common/config/routes';
-import { CreatePostSchema, CreatePostFormData, CreatePostMapper } from '../mappers/create-post.mapper';
-import { createPost } from '../api/create-post.api';
 import { useToastStore } from '@/infra/store/toast.adapter';
+
+import { createPost } from '../api/create-post.api';
+import { CreatePostSchema, CreatePostFormData, CreatePostMapper } from '../mappers/create-post.mapper';
+
 import { GET_ADMIN_POSTS_QUERY_KEY } from './useAdminPosts';
 
 export const useCreatePost = () => {
@@ -35,7 +38,7 @@ export const useCreatePost = () => {
     },
     onError: () => {
       error('Ocorreu um erro ao criar a aula. Tente novamente.');
-    }
+    },
   });
 
   const onSubmit = form.handleSubmit((data) => {

@@ -1,14 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AdminHeader } from './AdminHeader';
-import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
 import { useEffect } from 'react';
 
-const withAuth = (Story: any) => {
+import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
+
+import { AdminHeader } from './AdminHeader';
+
+const WithAuth = (Story: any) => {
   useEffect(() => {
-    useAuthStoreAdapter.setState({ 
+    useAuthStoreAdapter.setState({
       token: 'fake-jwt-token',
       isAuthenticated: true,
-      user: { id: '1', name: 'Professor Storybook', email: 'prof@storybook.com', role: 'PROFESSOR' }
+      user: { id: '1', name: 'Professor Storybook', email: 'prof@storybook.com', role: 'PROFESSOR' },
     });
   }, []);
 
@@ -22,7 +24,7 @@ const withAuth = (Story: any) => {
 const meta: Meta<typeof AdminHeader> = {
   title: 'Features/Admin/Posts/AdminHeader',
   component: AdminHeader,
-  decorators: [withAuth],
+  decorators: [WithAuth],
   parameters: {
     layout: 'fullscreen',
   },

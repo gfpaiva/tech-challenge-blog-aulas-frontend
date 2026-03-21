@@ -1,9 +1,11 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { useCreatePost } from './useCreatePost';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { useRouter } from 'next/navigation';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
+
 import { createPost } from '../api/create-post.api';
+
+import { useCreatePost } from './useCreatePost';
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),

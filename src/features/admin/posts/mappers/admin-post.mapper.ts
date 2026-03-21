@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { AdminPost, AdminPostResponse } from '../types/admin-post.type';
 
 export const AuthorSchema = z.object({
@@ -12,20 +13,24 @@ export const CategorySchema = z.object({
   name: z.string(),
 });
 
-export const PostSchema = z.object({
-  id: z.uuid(),
-  title: z.string(),
-  content: z.string(),
-  author: AuthorSchema,
-  category: CategorySchema,
-  creationDate: z.iso.datetime(),
-  updateDate: z.iso.datetime(),
-}).transform((post): AdminPost => ({
-  id: post.id,
-  title: post.title,
-  subject: post.category.name,
-  date: new Date(post.creationDate).toLocaleDateString('pt-BR'),
-}));
+export const PostSchema = z
+  .object({
+    id: z.uuid(),
+    title: z.string(),
+    content: z.string(),
+    author: AuthorSchema,
+    category: CategorySchema,
+    creationDate: z.iso.datetime(),
+    updateDate: z.iso.datetime(),
+  })
+  .transform(
+    (post): AdminPost => ({
+      id: post.id,
+      title: post.title,
+      subject: post.category.name,
+      date: new Date(post.creationDate).toLocaleDateString('pt-BR'),
+    }),
+  );
 
 export const AdminPostResponseSchema = z.object({
   data: z.array(PostSchema),

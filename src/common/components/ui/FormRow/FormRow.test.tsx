@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import { FormRow } from './FormRow';
 
 describe('FormRow Component', () => {
@@ -8,9 +9,9 @@ describe('FormRow Component', () => {
     render(
       <FormRow label="Test Label">
         <input data-testid="child-input" />
-      </FormRow>
+      </FormRow>,
     );
-    
+
     // Assert
     expect(screen.getByText('Test Label')).toBeInTheDocument();
     expect(screen.getByTestId('child-input')).toBeInTheDocument();
@@ -21,9 +22,9 @@ describe('FormRow Component', () => {
     render(
       <FormRow label="Email" error="Invalid email address">
         <input />
-      </FormRow>
+      </FormRow>,
     );
-    
+
     // Assert
     const errorMessage = screen.getByText('Invalid email address');
     expect(errorMessage).toBeInTheDocument();
@@ -35,9 +36,9 @@ describe('FormRow Component', () => {
     render(
       <FormRow label="Email">
         <input />
-      </FormRow>
+      </FormRow>,
     );
-    
+
     // Assert
     const errorElements = screen.queryByText(/invalid/i);
     expect(errorElements).not.toBeInTheDocument();
@@ -48,9 +49,9 @@ describe('FormRow Component', () => {
     const { container } = render(
       <FormRow label="Custom" className="custom-fieldset">
         <div />
-      </FormRow>
+      </FormRow>,
     );
-    
+
     // Assert
     const fieldset = container.querySelector('div.fieldset');
     expect(fieldset).toHaveClass('custom-fieldset');

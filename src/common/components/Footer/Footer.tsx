@@ -1,20 +1,18 @@
 import Link from 'next/link';
-import { NavLink } from '../ui/NavLink/NavLink';
+
 import { appRoutes } from '@/common/config/routes';
+
+import { NavLink } from '../ui/NavLink/NavLink';
 
 export function Footer() {
   return (
     <footer className="bg-base-300 text-base-content border-t border-base-200">
-
       {/* Main Footer Content */}
       <div className="footer p-10 container mx-auto">
-
         {/* Brand Column */}
         <aside className="max-w-xs">
           <Link href={appRoutes.home.path} className="flex items-center gap-2 hover:opacity-80 transition-opacity mb-2">
-            <span className="text-2xl font-bold font-serif text-base-content tracking-tight">
-              Blog Aulas
-            </span>
+            <span className="text-2xl font-bold font-serif text-base-content tracking-tight">Blog Aulas</span>
           </Link>
           <p className="opacity-70 text-sm">
             Plataforma educacional focada em compartilhar conhecimento de qualidade entre professores e alunos.
@@ -35,7 +33,6 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Blog Aulas. Feito com ❤️ por Guilherme Paiva</p>
         </aside>
       </div>
-
     </footer>
   );
 }

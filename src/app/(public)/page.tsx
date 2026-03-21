@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
-import { Hero } from "@/features/home/components/Hero/Hero";
-import { LatestPosts } from "@/features/posting/components/LatestPosts/LatestPosts";
-import { appRoutes } from "@/common/config/routes";
-import { getPublicPosts } from "@/features/posting/api/get-public-posts.api";
+import { appRoutes } from '@/common/config/routes';
+import { Hero } from '@/features/home/components/Hero/Hero';
+import { getPublicPosts } from '@/features/posting/api/get-public-posts.api';
+import { LatestPosts } from '@/features/posting/components/LatestPosts/LatestPosts';
 
 export const metadata: Metadata = {
   title: appRoutes.home.title,

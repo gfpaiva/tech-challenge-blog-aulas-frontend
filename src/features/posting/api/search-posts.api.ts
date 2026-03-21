@@ -1,5 +1,7 @@
 import { httpAdapter } from '@/infra/http/fetch.adapter';
+
 import { PostMapper } from '../mappers/post.mapper';
+
 import type { GetPublicPostsResult } from './get-public-posts.api';
 
 export type SearchPostsParams = {

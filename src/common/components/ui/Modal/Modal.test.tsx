@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import { Modal } from './Modal';
 
 describe('Modal Component', () => {
@@ -8,9 +9,9 @@ describe('Modal Component', () => {
     const { container } = render(
       <Modal isOpen={false} onClose={() => {}}>
         Test Content
-      </Modal>
+      </Modal>,
     );
-    
+
     // Assert
     expect(container).toBeEmptyDOMElement();
   });
@@ -20,9 +21,9 @@ describe('Modal Component', () => {
     render(
       <Modal isOpen={true} onClose={() => {}} title="Test Title" actions={<button>Action</button>}>
         Test Content
-      </Modal>
+      </Modal>,
     );
-    
+
     // Assert
     expect(screen.getByText('Test Title')).toBeInTheDocument();
     expect(screen.getByText('Test Content')).toBeInTheDocument();
@@ -36,13 +37,13 @@ describe('Modal Component', () => {
     render(
       <Modal isOpen={true} onClose={onCloseMock}>
         Content
-      </Modal>
+      </Modal>,
     );
-    
+
     // Act
     const closeBtn = screen.getByLabelText('Close modal');
     fireEvent.click(closeBtn);
-    
+
     // Assert
     expect(onCloseMock).toHaveBeenCalledTimes(1);
   });
@@ -52,9 +53,9 @@ describe('Modal Component', () => {
     render(
       <Modal isOpen={true} onClose={() => {}} hideCloseButton>
         Content
-      </Modal>
+      </Modal>,
     );
-    
+
     // Assert
     expect(screen.queryByLabelText('Close modal')).not.toBeInTheDocument();
   });
@@ -65,14 +66,14 @@ describe('Modal Component', () => {
     render(
       <Modal isOpen={true} onClose={onCloseMock}>
         Content
-      </Modal>
+      </Modal>,
     );
-    
+
     // Act
     // The backdrop is typically implemented as a button with text "close" in this component
     const backdropBtn = screen.getByRole('button', { name: /^close$/i });
     fireEvent.click(backdropBtn);
-    
+
     // Assert
     expect(onCloseMock).toHaveBeenCalledTimes(1);
   });

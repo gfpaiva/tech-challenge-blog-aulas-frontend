@@ -1,7 +1,9 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { useTheme } from './useTheme';
+
 import { useThemeStoreAdapter } from '@/infra/store/theme.adapter';
+
+import { useTheme } from './useTheme';
 
 vi.mock('@/infra/store/theme.adapter', () => ({
   useThemeStoreAdapter: vi.fn(),
@@ -16,7 +18,7 @@ describe('useTheme Hook', () => {
       toggleTheme: vi.fn(),
     };
     vi.mocked(useThemeStoreAdapter).mockReturnValue(mockStore);
-    
+
     // Clear DOM changes from previous tests
     document.documentElement.removeAttribute('data-theme');
   });
@@ -41,11 +43,11 @@ describe('useTheme Hook', () => {
   it('reflects store changes to document string', () => {
     // Arrange
     const { rerender } = renderHook(() => useTheme());
-    
+
     // Act
     mockStore.theme = 'retro';
     rerender();
-    
+
     // Assert
     expect(document.documentElement.getAttribute('data-theme')).toBe('retro');
   });

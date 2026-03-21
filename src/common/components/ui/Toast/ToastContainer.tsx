@@ -1,6 +1,7 @@
 'use client';
 
 import { useToastStore } from '@/infra/store/toast.adapter';
+
 import { Toast } from './Toast';
 
 export function ToastContainer() {

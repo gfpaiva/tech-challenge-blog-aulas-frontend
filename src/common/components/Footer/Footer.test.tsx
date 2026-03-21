@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import { Footer } from './Footer';
 
 // Mock routing components
@@ -11,7 +12,7 @@ describe('Footer Component', () => {
   it('renders brand logo and description', () => {
     // Arrange & Act
     render(<Footer />);
-    
+
     // Assert
     const brandLink = screen.getByRole('link', { name: /blog aulas/i });
     expect(brandLink).toBeInTheDocument();
@@ -21,7 +22,7 @@ describe('Footer Component', () => {
   it('renders navigation links', () => {
     // Arrange & Act
     render(<Footer />);
-    
+
     // Assert
     expect(screen.getByRole('link', { name: 'Início' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Aulas' })).toHaveAttribute('href', '/aulas');
@@ -30,7 +31,7 @@ describe('Footer Component', () => {
   it('renders copyright with current year', () => {
     // Arrange & Act
     render(<Footer />);
-    
+
     // Assert
     const year = new Date().getFullYear();
     expect(screen.getByText(new RegExp(`© ${year} Blog Aulas`))).toBeInTheDocument();

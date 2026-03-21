@@ -1,5 +1,5 @@
-import type { Preview } from '@storybook/nextjs-vite'
-import '../src/app/globals.css'
+import type { Preview } from '@storybook/nextjs-vite';
+import '../src/app/globals.css';
 
 const preview: Preview = {
   globalTypes: {
@@ -19,18 +19,18 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const theme = context.globals.theme || 'blog'
+      const theme = context.globals.theme || 'blog';
       if (typeof window !== 'undefined') {
-        document.documentElement.setAttribute('data-theme', theme)
+        document.documentElement.setAttribute('data-theme', theme);
       }
-      return Story()
+      return Story();
     },
   ],
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
 
@@ -38,8 +38,8 @@ const preview: Preview = {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+      test: 'todo',
+    },
   },
 };
 

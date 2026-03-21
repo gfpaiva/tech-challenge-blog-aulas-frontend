@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import { useDeletePost } from './useDeletePost';
 
 vi.mock('@tanstack/react-query', () => ({
@@ -18,4 +19,3 @@ describe('useDeletePost Hook', () => {
     expect(result.current.mutate).toBeDefined();
   });
 });
-

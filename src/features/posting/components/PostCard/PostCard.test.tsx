@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import { PostCard, PostCardSkeleton } from './PostCard';
 
 describe('PostCard Component', () => {
@@ -11,7 +12,7 @@ describe('PostCard Component', () => {
     thumbnailUrl: 'thumb.jpg',
     publishedAt: '10/10/2023',
     authorId: 'auth-1',
-    authorConfig: { name: 'Author Name', avatarUrl: '' }
+    authorConfig: { name: 'Author Name', avatarUrl: '' },
   };
 
   it('renders post details correctly', () => {

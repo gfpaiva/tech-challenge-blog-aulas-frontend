@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import { PostContent } from './PostContent';
 
 const meta: Meta<typeof PostContent> = {

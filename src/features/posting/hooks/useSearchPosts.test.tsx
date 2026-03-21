@@ -1,9 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useSearchPosts } from './useSearchPosts';
-import { searchPosts } from '../api/search-posts.api';
+import { renderHook, waitFor } from '@testing-library/react';
 import React from 'react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+
+import { searchPosts } from '../api/search-posts.api';
+
+import { useSearchPosts } from './useSearchPosts';
 
 // Mock API call
 vi.mock('../api/search-posts.api', () => ({
@@ -18,9 +20,9 @@ const createWrapper = () => {
       },
     },
   });
-  return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
+  return function Wrapper({ children }: { children: React.ReactNode }) {
+    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  };
 };
 
 describe('useSearchPosts Hook', () => {

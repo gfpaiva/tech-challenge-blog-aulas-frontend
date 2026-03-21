@@ -1,15 +1,18 @@
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { appRoutes } from '@/common/config/routes';
-import { CreatePostSchema, CreatePostFormData, CreatePostMapper } from '../mappers/create-post.mapper';
-import { updatePost } from '../api/update-post.api';
-import { useToastStore } from '@/infra/store/toast.adapter';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { appRoutes } from '@/common/config/routes';
+import { useToastStore } from '@/infra/store/toast.adapter';
+
+import { updatePost } from '../api/update-post.api';
+import { CreatePostSchema, CreatePostFormData, CreatePostMapper } from '../mappers/create-post.mapper';
 import { CreatePostResponse } from '../types/create-post.type';
-import { GET_POST_DETAIL_QUERY_KEY } from './usePostDetail';
+
 import { GET_ADMIN_POSTS_QUERY_KEY } from './useAdminPosts';
+import { GET_POST_DETAIL_QUERY_KEY } from './usePostDetail';
 
 export const useUpdatePost = (postDetail?: CreatePostResponse) => {
   const router = useRouter();
@@ -52,7 +55,7 @@ export const useUpdatePost = (postDetail?: CreatePostResponse) => {
     },
     onError: () => {
       error('Ocorreu um erro ao atualizar a aula. Tente novamente.');
-    }
+    },
   });
 
   const onSubmit = form.handleSubmit((data) => {

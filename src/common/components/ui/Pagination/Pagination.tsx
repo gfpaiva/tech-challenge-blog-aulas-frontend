@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { cn } from '@/common/lib/utils';
+
 import { Button } from '../Button/Button';
 
 export type PaginationProps = {
@@ -7,14 +9,9 @@ export type PaginationProps = {
   totalPages: number;
   onPageChange: (page: number) => void;
   className?: string;
-}
+};
 
-export function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-  className,
-}: PaginationProps) {
+export function Pagination({ currentPage, totalPages, onPageChange, className }: PaginationProps) {
   if (totalPages <= 1) return null;
 
   const items: (number | string)[] = [];

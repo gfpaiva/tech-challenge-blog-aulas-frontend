@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { AdminPostsTable, AdminPostsTableSkeleton } from './AdminPostsTable';
+
 import { useAdminPosts } from '../../hooks/useAdminPosts';
+
+import { AdminPostsTable, AdminPostsTableSkeleton } from './AdminPostsTable';
 
 vi.mock('../../hooks/useAdminPosts');
 
@@ -12,7 +14,7 @@ describe('AdminPostsTable', () => {
       meta: { page: 1, lastPage: 2, total: 15 },
       paginationState: { page: 1, limit: 10, setPage: vi.fn(), setLimit: vi.fn() },
       actions: { deletePost: vi.fn(), isDeleting: false, deletingId: null },
-      searchState: { searchTerm: '', setSearchTerm: vi.fn(), debouncedSearchTerm: '' }
+      searchState: { searchTerm: '', setSearchTerm: vi.fn(), debouncedSearchTerm: '' },
     } as any);
   });
 
@@ -25,7 +27,8 @@ describe('AdminPostsTable', () => {
 
   it('renders empty state', () => {
     vi.mocked(useAdminPosts).mockReturnValueOnce({
-      posts: [], searchState: { searchTerm: '' }
+      posts: [],
+      searchState: { searchTerm: '' },
     } as any);
     render(<AdminPostsTable />);
     expect(screen.getByText('Nenhuma aula encontrada.')).toBeInTheDocument();

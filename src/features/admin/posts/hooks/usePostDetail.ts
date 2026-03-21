@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { getPostDetail } from '../api/get-post-detail.api';
 
 export const GET_POST_DETAIL_QUERY_KEY = 'postDetail';

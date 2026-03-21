@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deletePost } from '../api/delete-post';
+
 import { useToastStore } from '@/infra/store/toast.adapter';
-import { GET_ADMIN_POSTS_QUERY_KEY } from './useAdminPosts';
+
+import { deletePost } from '../api/delete-post';
 
 export function useDeletePost() {
   const queryClient = useQueryClient();
@@ -11,11 +12,11 @@ export function useDeletePost() {
   return useMutation({
     mutationFn: deletePost,
     onMutate: async (postId: string) => {
-      await queryClient.cancelQueries({ queryKey: [GET_ADMIN_POSTS_QUERY_KEY] });
+      await queryClient.cancelQueries({ queryKey: ['adminPosts'] });
 
-      const previousQueries = queryClient.getQueriesData({ queryKey: [GET_ADMIN_POSTS_QUERY_KEY] });
+      const previousQueries = queryClient.getQueriesData({ queryKey: ['adminPosts'] });
 
-      queryClient.setQueriesData({ queryKey: [GET_ADMIN_POSTS_QUERY_KEY] }, (oldData: any) => {
+      queryClient.setQueriesData({ queryKey: ['adminPosts'] }, (oldData: any) => {
         if (!oldData || !oldData.data) return oldData;
         return {
           ...oldData,
@@ -37,7 +38,7 @@ export function useDeletePost() {
       success('Aula excluída com sucesso.');
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [GET_ADMIN_POSTS_QUERY_KEY] });
+      queryClient.invalidateQueries({ queryKey: ['adminPosts'] });
     },
   });
 }

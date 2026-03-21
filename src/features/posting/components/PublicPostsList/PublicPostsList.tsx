@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import type { Post } from '../../types/post.type';
 import { PostCard, PostCardSkeleton } from '../PostCard/PostCard';
 
@@ -9,12 +10,7 @@ type PublicPostsListProps = {
   onLoadMore?: () => void;
 };
 
-export function PublicPostsList({
-  posts,
-  hasNextPage,
-  isFetchingNextPage,
-  onLoadMore
-}: PublicPostsListProps) {
+export function PublicPostsList({ posts, hasNextPage, isFetchingNextPage, onLoadMore }: PublicPostsListProps) {
   const observerTarget = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,7 +20,7 @@ export function PublicPostsList({
           onLoadMore?.();
         }
       },
-      { threshold: 0.1, rootMargin: '100px' }
+      { threshold: 0.1, rootMargin: '100px' },
     );
 
     if (observerTarget.current) {

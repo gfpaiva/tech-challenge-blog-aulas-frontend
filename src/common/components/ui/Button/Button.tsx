@@ -1,4 +1,5 @@
 import type { ReactNode, ButtonHTMLAttributes } from 'react';
+
 import { cn } from '@/common/lib/utils';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -6,7 +7,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   isCircle?: boolean;
-}
+};
 
 const variantStyles = {
   primary: 'btn-primary',
@@ -33,13 +34,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={cn(
-        'btn',
-        variantStyles[variant],
-        sizeStyles[size],
-        isCircle && 'btn-circle',
-        className
-      )}
+      className={cn('btn', variantStyles[variant], sizeStyles[size], isCircle && 'btn-circle', className)}
       {...props}
     >
       {children}

@@ -1,9 +1,11 @@
-import { renderHook, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { useAdminPosts } from './useAdminPosts';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
+
 import { getAdminPosts } from '../api/get-admin-posts';
+
+import { useAdminPosts } from './useAdminPosts';
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
@@ -27,12 +29,12 @@ describe('useAdminPosts Hook', () => {
     vi.mocked(useRouter).mockReturnValue({ replace: mockReplace } as any);
     vi.mocked(usePathname).mockReturnValue('/admin/dashboard');
     vi.mocked(useSearchParams).mockReturnValue(new URLSearchParams('') as any);
-    
+
     vi.mocked(getAdminPosts).mockResolvedValue({
       data: [{ id: '1', title: 'Test Post', subject: 'Math', date: '01/01/2023' }],
       meta: { total: 1, page: 1, lastPage: 1 },
     });
-    
+
     vi.clearAllMocks();
   });
 

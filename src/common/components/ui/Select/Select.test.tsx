@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import { Select } from './Select';
 
 describe('Select Component', () => {
@@ -9,9 +10,9 @@ describe('Select Component', () => {
       <Select data-testid="select">
         <option value="1">One</option>
         <option value="2">Two</option>
-      </Select>
+      </Select>,
     );
-    
+
     // Assert
     const select = screen.getByTestId('select');
     expect(select).toBeInTheDocument();
@@ -24,9 +25,9 @@ describe('Select Component', () => {
     render(
       <Select data-testid="error-select" error>
         <option>Test</option>
-      </Select>
+      </Select>,
     );
-    
+
     // Assert
     const select = screen.getByTestId('error-select');
     expect(select).toHaveClass('select-error');
@@ -37,9 +38,9 @@ describe('Select Component', () => {
     render(
       <Select data-testid="custom-select" className="my-test-class">
         <option>Test</option>
-      </Select>
+      </Select>,
     );
-    
+
     // Assert
     const select = screen.getByTestId('custom-select');
     expect(select).toHaveClass('my-test-class');

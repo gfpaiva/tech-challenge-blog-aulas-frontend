@@ -1,7 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { ThemeToggle } from './ThemeToggle';
+
 import { useTheme } from '@/common/hooks/useTheme';
+
+import { ThemeToggle } from './ThemeToggle';
 
 vi.mock('@/common/hooks/useTheme');
 
@@ -18,10 +20,10 @@ describe('ThemeToggle Component', () => {
       setTheme: vi.fn(),
       isHydrated: false,
     });
-    
+
     // Act
     render(<ThemeToggle />);
-    
+
     // Assert
     expect(screen.getByLabelText('Carregando tema')).toBeInTheDocument();
     expect(screen.queryByLabelText('Alternar tema')).not.toBeInTheDocument();
@@ -35,10 +37,10 @@ describe('ThemeToggle Component', () => {
       setTheme: vi.fn(),
       isHydrated: true,
     });
-    
+
     // Act
     const { container } = render(<ThemeToggle />);
-    
+
     // Assert
     const btn = screen.getByLabelText('Alternar tema');
     expect(btn).toBeInTheDocument();
@@ -55,10 +57,10 @@ describe('ThemeToggle Component', () => {
       setTheme: vi.fn(),
       isHydrated: true,
     });
-    
+
     // Act
     const { container } = render(<ThemeToggle />);
-    
+
     // Assert
     const btn = screen.getByLabelText('Alternar tema');
     expect(btn).toBeInTheDocument();
@@ -75,11 +77,11 @@ describe('ThemeToggle Component', () => {
       setTheme: vi.fn(),
       isHydrated: true,
     });
-    
+
     // Act
     render(<ThemeToggle />);
     fireEvent.click(screen.getByLabelText('Alternar tema'));
-    
+
     // Assert
     expect(toggleSpy).toHaveBeenCalledTimes(1);
   });

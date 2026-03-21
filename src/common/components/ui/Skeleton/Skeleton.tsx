@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { cn } from '@/common/lib/utils';
 
 export type SkeletonProps = React.HTMLAttributes<HTMLDivElement>;

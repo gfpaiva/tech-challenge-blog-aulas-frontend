@@ -1,7 +1,8 @@
 'use client';
 
-import { useTheme } from '@/common/hooks/useTheme';
 import { Sun, Moon } from 'lucide-react';
+
+import { useTheme } from '@/common/hooks/useTheme';
 
 export function ThemeToggle() {
   const { theme, toggleTheme, isHydrated } = useTheme();

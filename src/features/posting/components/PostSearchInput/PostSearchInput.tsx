@@ -1,4 +1,5 @@
 import { Search } from 'lucide-react';
+
 import { Input } from '@/common/components/ui/Input/Input';
 
 type PostSearchInputProps = {
@@ -19,9 +20,7 @@ export function PostSearchInput({ value, onChange, isLoading }: PostSearchInputP
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
-        {isLoading && (
-          <span className="loading loading-spinner loading-sm absolute right-4 text-primary"></span>
-        )}
+        {isLoading && <span className="loading loading-spinner loading-sm absolute right-4 text-primary"></span>}
       </div>
     </div>
   );

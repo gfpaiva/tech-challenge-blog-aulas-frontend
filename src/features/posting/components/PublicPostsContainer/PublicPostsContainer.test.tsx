@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { PublicPostsContainer } from './PublicPostsContainer';
+
 import { usePublicPosts } from '../../hooks/usePublicPosts';
 import { useSearchPosts } from '../../hooks/useSearchPosts';
+
+import { PublicPostsContainer } from './PublicPostsContainer';
 
 vi.mock('../../hooks/usePublicPosts');
 vi.mock('../../hooks/useSearchPosts');
@@ -17,12 +19,12 @@ describe('PublicPostsContainer Component', () => {
       data: { pages: [{ data: [{ id: '1', title: 'List Post' }] }] },
       fetchNextPage: vi.fn(),
       hasNextPage: false,
-      isFetchingNextPage: false
+      isFetchingNextPage: false,
     } as any);
 
     vi.mocked(useSearchPosts).mockReturnValue({
       data: undefined,
-      isFetching: false
+      isFetching: false,
     } as any);
   });
 

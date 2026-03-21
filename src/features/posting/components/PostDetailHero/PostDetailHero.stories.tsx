@@ -1,5 +1,7 @@
-import type { PostDetail } from '../../types/post.type';
 import { Meta, StoryObj } from '@storybook/react';
+
+import type { PostDetail } from '../../types/post.type';
+
 import { PostDetailHero } from './PostDetailHero';
 
 const mockPost: PostDetail = {

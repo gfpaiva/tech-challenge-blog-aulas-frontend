@@ -1,12 +1,13 @@
+import { CheckCircle, AlertCircle, Info, AlertTriangle, X } from 'lucide-react';
 import { useEffect } from 'react';
+
+import { cn } from '@/common/lib/utils';
 import { ToastMessage } from '@/common/ports/toast.port';
 import { useToastStore } from '@/infra/store/toast.adapter';
-import { CheckCircle, AlertCircle, Info, AlertTriangle, X } from 'lucide-react';
-import { cn } from '@/common/lib/utils';
 
 type ToastProps = {
   toast: ToastMessage;
-}
+};
 
 export function Toast({ toast }: ToastProps) {
   const removeToast = useToastStore((state) => state.remove);

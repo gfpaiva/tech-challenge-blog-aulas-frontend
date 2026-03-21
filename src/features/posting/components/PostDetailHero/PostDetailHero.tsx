@@ -1,4 +1,5 @@
 import { Calendar, User, Clock } from 'lucide-react';
+
 import type { PostDetail } from '../../types/post.type';
 
 type PostDetailHeroProps = {
@@ -9,7 +10,7 @@ export function PostDetailHero({ post }: PostDetailHeroProps) {
   return (
     <figure className="relative w-full min-h-[420px] md:min-h-[520px] overflow-hidden m-0 p-0">
       {/* Hero Image */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
+      {}
       <img
         src={post.thumbnailUrl}
         alt={`Capa da aula: ${post.title}`}

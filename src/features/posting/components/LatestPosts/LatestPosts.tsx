@@ -1,13 +1,13 @@
-import { PostCard } from '../PostCard/PostCard';
-import type { Post } from '../../types/post.type';
 import { ActionLink } from '@/common/components/ui/ActionLink/ActionLink';
 import { appRoutes } from '@/common/config/routes';
+
+import type { Post } from '../../types/post.type';
+import { PostCard } from '../PostCard/PostCard';
 
 export function LatestPosts({ posts }: { posts: Post[] }) {
   return (
     <section id="aulas" className="py-20 bg-base-100">
       <div className="container mx-auto px-4">
-
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 border-b border-base-200 pb-6">
           <div className="max-w-2xl">
@@ -25,7 +25,6 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
             <PostCard key={post.id} post={post} />
           ))}
         </div>
-
       </div>
     </section>
   );

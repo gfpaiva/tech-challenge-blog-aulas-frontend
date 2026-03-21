@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+
 import type { IThemePort } from '@/common/ports/theme.port';
 
 export const useThemeStoreAdapter = create<IThemePort>()(
@@ -11,6 +12,6 @@ export const useThemeStoreAdapter = create<IThemePort>()(
     }),
     {
       name: 'theme-storage',
-    }
-  )
+    },
+  ),
 );

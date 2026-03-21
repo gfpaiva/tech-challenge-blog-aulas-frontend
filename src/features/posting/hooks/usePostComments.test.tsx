@@ -1,8 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { usePostComments } from './usePostComments';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import { createComment } from '../api/create-comment.api';
+
+import { usePostComments } from './usePostComments';
 
 vi.mock('../api/create-comment.api', () => ({
   createComment: vi.fn(),
@@ -20,9 +22,7 @@ vi.mock('@/infra/store/toast.adapter', () => ({
 describe('usePostComments Hook', () => {
   let queryClient: QueryClient;
 
-  const initialComments = [
-    { id: 'c1', authorName: 'Test User', content: 'Old comment', publishedAt: '01/01/2023' }
-  ];
+  const initialComments = [{ id: 'c1', authorName: 'Test User', content: 'Old comment', publishedAt: '01/01/2023' }];
 
   beforeEach(() => {
     queryClient = new QueryClient({

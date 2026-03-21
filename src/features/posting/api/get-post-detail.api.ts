@@ -1,4 +1,5 @@
 import { httpAdapter } from '@/infra/http/fetch.adapter';
+
 import { PostMapper } from '../mappers/post.mapper';
 import type { PostDetail } from '../types/post.type';
 

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
 import { appRoutes } from '@/common/config/routes';
-import { getPublicPosts } from '@/features/posting/api/get-public-posts.api';
-import { getPostDetail } from '@/features/posting/api/get-post-detail.api';
 import { getPostComments } from '@/features/posting/api/get-post-comments.api';
-import { PostDetailHero } from '@/features/posting/components/PostDetailHero/PostDetailHero';
-import { PostContent } from '@/features/posting/components/PostContent/PostContent';
+import { getPostDetail } from '@/features/posting/api/get-post-detail.api';
+import { getPublicPosts } from '@/features/posting/api/get-public-posts.api';
 import { CommentsSection } from '@/features/posting/components/CommentsSection/CommentsSection';
+import { PostContent } from '@/features/posting/components/PostContent/PostContent';
+import { PostDetailHero } from '@/features/posting/components/PostDetailHero/PostDetailHero';
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -42,10 +43,7 @@ export default async function PostDetailPage({ params }: PageProps) {
   let comments;
 
   try {
-    [post, comments] = await Promise.all([
-      getPostDetail(id),
-      getPostComments(id),
-    ]);
+    [post, comments] = await Promise.all([getPostDetail(id), getPostComments(id)]);
   } catch {
     notFound();
   }

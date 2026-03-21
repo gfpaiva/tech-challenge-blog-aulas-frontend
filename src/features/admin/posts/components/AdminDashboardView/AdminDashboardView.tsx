@@ -1,9 +1,10 @@
 'use client';
 
-import { useAdminPosts } from '../../hooks/useAdminPosts';
-import { SearchInput } from '../SearchInput/SearchInput';
-import { AdminPostsTable, AdminPostsTableSkeleton } from '../AdminPostsTable/AdminPostsTable';
 import { Skeleton } from '@/common/components/ui/Skeleton';
+
+import { useAdminPosts } from '../../hooks/useAdminPosts';
+import { AdminPostsTable, AdminPostsTableSkeleton } from '../AdminPostsTable/AdminPostsTable';
+import { SearchInput } from '../SearchInput/SearchInput';
 
 export function AdminDashboardSkeleton() {
   return (
@@ -45,13 +46,7 @@ export function AdminDashboardView() {
         </div>
 
         {/* Table Container */}
-        <div className="bg-base-100">
-          {isLoading ? (
-            <AdminPostsTableSkeleton />
-          ) : (
-            <AdminPostsTable />
-          )}
-        </div>
+        <div className="bg-base-100">{isLoading ? <AdminPostsTableSkeleton /> : <AdminPostsTable />}</div>
       </div>
     </main>
   );
