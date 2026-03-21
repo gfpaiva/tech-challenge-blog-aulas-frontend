@@ -1,6 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { usePostDetail } from '../../hooks/usePostDetail';
 import { useUpdatePost } from '../../hooks/useUpdatePost';
@@ -8,18 +9,28 @@ import { useUpdatePost } from '../../hooks/useUpdatePost';
 import { PostForm, PostFormSkeleton } from './PostForm';
 
 export const EditPostContainer = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const searchParams = useSearchParams();
-  const postId = searchParams.get('id') as string;
+  const postId = searchParams.get('id');
 
-  const { data: postDetail, isLoading } = usePostDetail(postId);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMounted(true);
+  }, []);
+
+  const { data: postDetail, isLoading } = usePostDetail(postId || '');
   const { form, onSubmit, isPending } = useUpdatePost(postDetail);
 
-  if (isLoading) {
+  if (!isMounted || (isLoading && !postDetail)) {
     return <PostFormSkeleton />;
   }
 
-  if (!postDetail) {
-    return <div className="text-center text-error mt-10">Aula não encontrada.</div>;
+  if (!postId || !postDetail) {
+    return (
+      <div className="text-center text-error mt-10">
+        <p className="text-xl font-bold">Aula não encontrada.</p>
+      </div>
+    );
   }
 
   return (

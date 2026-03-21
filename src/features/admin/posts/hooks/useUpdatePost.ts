@@ -1,8 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, type UseFormReturn } from 'react-hook-form';
 
 import { appRoutes } from '@/common/config/routes';
 import { useToastStore } from '@/infra/store/toast.adapter';
@@ -14,7 +13,13 @@ import { CreatePostResponse } from '../types/create-post.type';
 import { GET_ADMIN_POSTS_QUERY_KEY } from './useAdminPosts';
 import { GET_POST_DETAIL_QUERY_KEY } from './usePostDetail';
 
-export const useUpdatePost = (postDetail?: CreatePostResponse) => {
+export type UseUpdatePostReturn = {
+  form: UseFormReturn<CreatePostFormData>;
+  onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
+  isPending: boolean;
+};
+
+export const useUpdatePost = (postDetail?: CreatePostResponse): UseUpdatePostReturn => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const success = useToastStore((state) => state.success);
@@ -22,25 +27,14 @@ export const useUpdatePost = (postDetail?: CreatePostResponse) => {
 
   const form = useForm<CreatePostFormData>({
     resolver: zodResolver(CreatePostSchema) as any,
-    defaultValues: {
-      title: '',
-      categoryId: 1,
-      content: '',
-    },
+    values: postDetail
+      ? {
+          title: postDetail.title,
+          categoryId: postDetail.category.id,
+          content: postDetail.content,
+        }
+      : undefined,
   });
-
-  useEffect(() => {
-    if (postDetail) {
-      form.reset({
-        title: postDetail.title,
-        categoryId: postDetail.category.id,
-        content: postDetail.content,
-      });
-    }
-    // `form` é intencionalmente omitido: o objeto retornado pelo useForm do RHF
-    // é estável por design entre re-renders. Incluí-lo causaria looping infinito.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postDetail]);
 
   const mutation = useMutation({
     mutationFn: (data: CreatePostFormData) => {
@@ -61,7 +55,7 @@ export const useUpdatePost = (postDetail?: CreatePostResponse) => {
     },
   });
 
-  const onSubmit = form.handleSubmit((data) => {
+  const onSubmit = form.handleSubmit((data: CreatePostFormData) => {
     mutation.mutate(data);
   });
 
