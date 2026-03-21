@@ -2,7 +2,7 @@
 
 > Interface Web responsiva construída com **Next.js** do "Blog Aulas", conectando professores e alunos.
 
-**🔗 Backend API:** [tech-challenge-blog-aulas-backend.azurewebsites.net](https://tech-challenge-blog-aulas-backend.azurewebsites.net/health) · [Repositório Backend](https://github.com/gfpaiva/tech-challenge-blog-aulas-backend)
+**🔗 Backend API:** [tech-challenge-blog-aulas-backend.onrender.com](https://tech-challenge-blog-aulas-backend.onrender.com/health) · [Repositório Backend](https://github.com/gfpaiva/tech-challenge-blog-aulas-backend)
 
 ---
 
@@ -243,9 +243,9 @@ Utilizamos **Conventional Commits** para facilitar o versionamento automático e
 
 ## CI/CD e Deploy
 
-O projeto conta com automação via **GitHub Actions** para garantir a integridade do código em todas as contribuições.
+O projeto conta com automação de ponta a ponta via **GitHub Actions**, cobrindo integração e entrega contínua.
 
-### Pipeline de Integração Contínua (CI)
+### Pipeline de Integração Contínua (CI) — `pr-validation.yml`
 
 Cada **Pull Request** para a branch `main` dispara automaticamente o workflow `pr-validation.yml`, que executa:
 
@@ -255,9 +255,19 @@ Cada **Pull Request** para a branch `main` dispara automaticamente o workflow `p
 | **Testes** | `pnpm test`  | Execução dos testes unitários e de componente. |
 | **Build**  | `pnpm build` | Validação do export estático (SSG).            |
 
-### Estratégia de Deploy
+### Pipeline de Entrega Contínua (CD) — `cd.yml`
 
-Como o app utiliza `output: 'export'` do Next.js, o resultado do `pnpm build` é uma pasta `./out/` com HTML/CSS/JS **totalmente estáticos**.
+Cada push na branch `main` (ou execução manual via `workflow_dispatch`) aciona o workflow `cd.yml`, composto por dois jobs:
+
+```
+push → main
+  └── release-please            ← Cria/atualiza PR de release + gera tag e CHANGELOG
+        └── deploy               ← Aciona deploy no Render via webhook (somente se houver nova release)
+```
+
+### Estratégia de Build e Hospedagem
+
+Como o app utiliza `output: 'export'` do Next.js, o resultado do `pnpm build` é uma pasta `./out/` com HTML/CSS/JS **totalmente estáticos**, hospedada no **Render**.
 
 ```
 pnpm build
@@ -268,7 +278,7 @@ pnpm build
         └── _next/static/         ← assets JS/CSS
 ```
 
-Esta pasta é servida via CDN (ex: Azure Static Web Apps, Vercel ou GitHub Pages).
+**Produção:** [tech-challenge-blog-aulas-frontend.onrender.com](https://tech-challenge-blog-aulas-frontend.onrender.com) (deploy automático via CD pipeline)
 
 ---
 
@@ -278,10 +288,11 @@ Esta pasta é servida via CDN (ex: Azure Static Web Apps, Vercel ou GitHub Pages
 
 ## Links Úteis
 
-| Recurso               | URL                                                                                                                                                      |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Backend API           | [tech-challenge-blog-aulas-backend.azurewebsites.net](https://tech-challenge-blog-aulas-backend.azurewebsites.net)                                       |
-| Repositório Backend   | [github.com/gfpaiva/tech-challenge-blog-aulas-backend](https://github.com/gfpaiva/tech-challenge-blog-aulas-backend)                                     |
-| DaisyUI Components    | [daisyui.com/components](https://daisyui.com/components/)                                                                                                |
-| TanStack Query Docs   | [tanstack.com/query/v5](https://tanstack.com/query/v5)                                                                                                   |
-| Next.js Static Export | [nextjs.org/docs/app/building-your-application/deploying/static-exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) |
+| Recurso                | URL                                                                                                                                                      |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Backend API (Produção) | [tech-challenge-blog-aulas-backend.onrender.com](https://tech-challenge-blog-aulas-backend.onrender.com)                                                 |
+| Repositório Backend    | [github.com/gfpaiva/tech-challenge-blog-aulas-backend](https://github.com/gfpaiva/tech-challenge-blog-aulas-backend)                                     |
+| release-please Action  | [github.com/googleapis/release-please-action](https://github.com/googleapis/release-please-action)                                                       |
+| DaisyUI Components     | [daisyui.com/components](https://daisyui.com/components/)                                                                                                |
+| TanStack Query Docs    | [tanstack.com/query/v5](https://tanstack.com/query/v5)                                                                                                   |
+| Next.js Static Export  | [nextjs.org/docs/app/building-your-application/deploying/static-exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) |
