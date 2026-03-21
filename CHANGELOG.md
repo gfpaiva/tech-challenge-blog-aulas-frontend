@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.0.0...v1.0.1) (2026-03-21)
+
+
+### Bug Fixes
+
+* minor fixes on login and comments ([e7eb6b0](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/e7eb6b0790d6ae0ceeb470b1c453b750daf0be2c))
+* minor fixes on login and comments ([e89a434](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/e89a434676e567529647571803a3b1b678053d3e))
+
 ## 1.0.0 (2026-03-21)
 
 
