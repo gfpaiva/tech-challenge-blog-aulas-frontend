@@ -4,29 +4,29 @@ import { MessageCircle, Send } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/common/components/ui/Button/Button';
+import { Skeleton } from '@/common/components/ui/Skeleton/Skeleton';
 import { Textarea } from '@/common/components/ui/Textarea/Textarea';
 import { appRoutes } from '@/common/config/routes';
 import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
 
 import { usePostComments } from '../../hooks/usePostComments';
-import type { Comment } from '../../types/post.type';
 import { CommentCard } from '../CommentCard/CommentCard';
 
 type CommentsSectionProps = {
   postId: string;
-  initialComments: Comment[];
 };
 
-export function CommentsSection({ postId, initialComments }: CommentsSectionProps) {
+export function CommentsSection({ postId }: CommentsSectionProps) {
   const {
     comments,
+    isLoading,
     onSubmit,
     isSubmitting,
     form: {
       register,
       formState: { errors },
     },
-  } = usePostComments(postId, initialComments);
+  } = usePostComments(postId);
 
   // Hydration guard: only read Zustand state after client mount
   const [mounted, setMounted] = useState(false);
@@ -93,7 +93,20 @@ export function CommentsSection({ postId, initialComments }: CommentsSectionProp
       )}
 
       {/* Comments List */}
-      {comments.length === 0 ? (
+      {isLoading ? (
+        <div className="flex flex-col gap-6">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="flex gap-3">
+              <Skeleton className="w-8 h-8 rounded-full shrink-0" />
+              <div className="flex-1 flex flex-col gap-2">
+                <Skeleton className="h-3 w-24" />
+                <Skeleton className="h-3 w-full" />
+                <Skeleton className="h-3 w-3/4" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : comments.length === 0 ? (
         <div className="text-center py-12 text-base-content/50">
           <MessageCircle className="w-10 h-10 mx-auto mb-3 opacity-40" />
           <p className="text-sm">Nenhum comentário ainda. Seja o primeiro!</p>

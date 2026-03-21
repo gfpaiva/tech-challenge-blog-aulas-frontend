@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { appRoutes } from '@/common/config/routes';
-import { getPostComments } from '@/features/posting/api/get-post-comments.api';
 import { getPostDetail } from '@/features/posting/api/get-post-detail.api';
 import { getPublicPosts } from '@/features/posting/api/get-public-posts.api';
 import { CommentsSection } from '@/features/posting/components/CommentsSection/CommentsSection';
@@ -40,10 +39,9 @@ export default async function PostDetailPage({ params }: PageProps) {
   const { id } = await params;
 
   let post;
-  let comments;
 
   try {
-    [post, comments] = await Promise.all([getPostDetail(id), getPostComments(id)]);
+    post = await getPostDetail(id);
   } catch {
     notFound();
   }
@@ -56,8 +54,8 @@ export default async function PostDetailPage({ params }: PageProps) {
       {/* Article body */}
       <PostContent content={post.content} />
 
-      {/* Comments section — client component */}
-      <CommentsSection postId={post.id} initialComments={comments} />
+      {/* Comments section — loaded client-side after page render */}
+      <CommentsSection postId={post.id} />
     </div>
   );
 }
