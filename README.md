@@ -27,6 +27,7 @@
 O **Blog Aulas** é uma plataforma educacional que permite a professores publicarem aulas e a alunos consumirem esse conteúdo publicamente. A interface foi construída priorizando performance (SSG/SSR híbrido).
 
 **Papel dos usuários:**
+
 - **PROFESSOR:** Autentica-se, gerencia posts (criar, editar, excluir) via painel administrativo.
 - **ALUNO:** Navega e lê posts publicados, pode comentar quando autenticado.
 
@@ -34,19 +35,19 @@ O **Blog Aulas** é uma plataforma educacional que permite a professores publica
 
 ## Stack Tecnológica
 
-| Categoria | Tecnologia | Versão |
-|---|---|---|
-| Framework | Next.js (App Router) | 16.1.7 |
-| Linguagem | TypeScript | ^5 |
-| Runtime | React | 19.2.3 |
-| Estilização | Tailwind CSS v4 + DaisyUI v5 | ^4 / ^5 |
-| Estado Global | Zustand | ^5.0.12 |
-| Data Fetching (Client) | TanStack Query | ^5.90.21 |
-| Formulários | React Hook Form + Zod | ^7 / ^4 |
-| Ícones | Lucide React | ^0.577.0 |
-| Merge de Classes | clsx + tailwind-merge | ^2 / ^3 |
-| Testes | Vitest + Storybook addon-vitest | ^4 |
-| Documentação de UI | Storybook | ^10 |
+| Categoria              | Tecnologia                      | Versão   |
+| ---------------------- | ------------------------------- | -------- |
+| Framework              | Next.js (App Router)            | 16.1.7   |
+| Linguagem              | TypeScript                      | ^5       |
+| Runtime                | React                           | 19.2.3   |
+| Estilização            | Tailwind CSS v4 + DaisyUI v5    | ^4 / ^5  |
+| Estado Global          | Zustand                         | ^5.0.12  |
+| Data Fetching (Client) | TanStack Query                  | ^5.90.21 |
+| Formulários            | React Hook Form + Zod           | ^7 / ^4  |
+| Ícones                 | Lucide React                    | ^0.577.0 |
+| Merge de Classes       | clsx + tailwind-merge           | ^2 / ^3  |
+| Testes                 | Vitest + Storybook addon-vitest | ^4       |
+| Documentação de UI     | Storybook                       | ^10      |
 
 ---
 
@@ -58,14 +59,13 @@ Este projeto segue uma arquitetura **Hexagonal (Portas e Adaptadores)** combinad
 
 ![Visão Arquitetura](docs/blog-aulas-frontend-arch.png)
 
-
 ### 2. Padrão MVVM
 
-| Camada | Responsabilidade | Local |
-|---|---|---|
-| **View** | Renderizar UI, delegar eventos via props. Zero lógica de negócio. | `features/*/components/` |
-| **ViewModel** | Orquestrar estado, fetch, formulários e submissões. | `features/*/hooks/useXxx.ts` |
-| **Model** | Tipos TypeScript, schemas Zod, mappers. | `features/*/types/`, `features/*/mappers/` |
+| Camada        | Responsabilidade                                                  | Local                                      |
+| ------------- | ----------------------------------------------------------------- | ------------------------------------------ |
+| **View**      | Renderizar UI, delegar eventos via props. Zero lógica de negócio. | `features/*/components/`                   |
+| **ViewModel** | Orquestrar estado, fetch, formulários e submissões.               | `features/*/hooks/useXxx.ts`               |
+| **Model**     | Tipos TypeScript, schemas Zod, mappers.                           | `features/*/types/`, `features/*/mappers/` |
 
 ### 3. Port/Adapter (Hexagonal)
 
@@ -159,8 +159,8 @@ Acesse [http://localhost:3001](http://localhost:3001) (ou a porta exibida no ter
 
 ## Variáveis de Ambiente
 
-| Variável | Padrão | Descrição |
-|---|---|---|
+| Variável              | Padrão                  | Descrição                  |
+| --------------------- | ----------------------- | -------------------------- |
 | `NEXT_PUBLIC_API_URL` | `http://localhost:3000` | URL base da API do backend |
 
 > **Prefixo `NEXT_PUBLIC_`:** Obrigatório para variáveis que precisam ser expostas ao bundle do cliente. Variáveis sem este prefixo só existem no servidor de build.
@@ -169,15 +169,19 @@ Acesse [http://localhost:3001](http://localhost:3001) (ou a porta exibida no ter
 
 ## Comandos Disponíveis
 
-| Comando | Descrição |
-|---|---|
-| `pnpm dev` | Inicia o servidor de desenvolvimento (Next.js Dev Server) |
-| `pnpm build` | Gera o export estático completo em `./out/` |
-| `pnpm start` | Serve o bundle de produção (requer `pnpm build` antes) |
-| `pnpm lint` | Executa o ESLint para análise estática de código |
-| `pnpm storybook` | Inicia o Storybook em `http://localhost:6006` |
+| Comando                | Descrição                                                   |
+| ---------------------- | ----------------------------------------------------------- |
+| `pnpm dev`             | Inicia o servidor de desenvolvimento (Next.js Dev Server)   |
+| `pnpm build`           | Gera o export estático completo em `./out/`                 |
+| `pnpm start`           | Serve o bundle de produção (requer `pnpm build` antes)      |
+| `pnpm test`            | Executa a suite completa de testes via Vitest               |
+| `pnpm test:watch`      | Executa os testes em modo interativo (watch mode)           |
+| `pnpm test:coverage`   | Gera relatório de cobertura de código (@vitest/coverage-v8) |
+| `pnpm lint`            | Executa o ESLint para análise estática de código            |
+| `pnpm lint:fix`        | Corrige automaticamente problemas simples de Lint           |
+| `pnpm format`          | Formata todo o código fonte utilizando Prettier             |
+| `pnpm storybook`       | Inicia o Storybook em `http://localhost:6006`               |
 | `pnpm build-storybook` | Gera o build estático do Storybook em `./storybook-static/` |
-| `pnpm test` | _(a definir)_ Executa a suite completa de testes via Vitest |
 
 ---
 
@@ -189,82 +193,95 @@ Acesse [http://localhost:3001](http://localhost:3001) (ou a porta exibida no ter
 
 ## Testes
 
-> ⚠️ _Esta seção será expandida quando a suite de testes for implementada._
+Suite de testes automatizada utilizando **Vitest** e **React Testing Library**, focada em garantir a confiabilidade da lógica de negócio e dos componentes de UI.
 
-### Estratégia
+### Estratégia de Testes
 
-| Tipo | Ferramenta | Foco |
-|---|---|---|
-| **Unit / Integration** | Vitest | Mappers, hooks, lógica de domínio |
-| **Visual / Component** | JSDom e react-testing-library | Componentes UI isolados (Dumb) |
+| Camada           | Ferramenta   | Foco                                                      |
+| ---------------- | ------------ | --------------------------------------------------------- |
+| **Unitário**     | Vitest       | Mappers, ViewModels (hooks), utilitários e lógica pura.   |
+| **Componente**   | Vitest + RTL | Interações, renderização e estados de componentes "Dumb". |
+| **Documentação** | Storybook    | Validação visual isolada e documentação técnica.          |
 
 ### Comandos de Teste
 
 ```bash
 pnpm test                  # Executa todos os testes
-pnpm test:coverage         # Relatório de cobertura (@vitest/coverage-v8)
+pnpm test:watch            # Executa em modo watch (desenvolvimento)
+pnpm test:coverage         # Gera relatório detalhado de cobertura (/coverage)
 ```
+
+---
+
+## Qualidade e Padronização
+
+O projeto utiliza um pipeline rigoroso de qualidade local para garantir que nenhum código "sujo" chegue ao repositório remoto.
+
+### 1. Automação com Git Hooks (Husky)
+
+- **Pre-commit:** Ao tentar realizar um commit, o **Husky** dispara o `lint-staged` que:
+  - Formata o código com **Prettier**.
+  - Executa a correção automática do **ESLint**.
+  - Valida tipos com `tsc --noEmit` (apenas nos arquivos modificados).
+- **Commit-msg:** Valida se a mensagem do commit segue o padrão **Conventional Commits**.
+
+### 2. Formatação e Linting
+
+- **Prettier:** Mantém o estilo de código consistente (configurável via `.prettierrc`).
+- **ESLint v9:** Configurado com flat config (`eslint.config.mjs`) para manter as melhores práticas de Next.js 16 e React 19.
+
+### 3. Padronização de Commits (Commitlint)
+
+Utilizamos **Conventional Commits** para facilitar o versionamento automático e o entendimento do histórico:
+
+- `feat(posting):` Novas funcionalidades.
+- `fix(auth):` Correção de bugs.
+- `refactor(ui):` Mudança estrutural sem alterar comportamento.
+- `chore:` Tarefas de manutenção ou dependências.
 
 ---
 
 ## CI/CD e Deploy
 
-> ⚠️ _Esta seção será expandida quando os pipelines forem configurados._
+O projeto conta com automação via **GitHub Actions** para garantir a integridade do código em todas as contribuições.
+
+### Pipeline de Integração Contínua (CI)
+
+Cada **Pull Request** para a branch `main` dispara automaticamente o workflow `pr-validation.yml`, que executa:
+
+| Etapa      | Comando      | Descrição                                      |
+| ---------- | ------------ | ---------------------------------------------- |
+| **Lint**   | `pnpm lint`  | Análise estática do código.                    |
+| **Testes** | `pnpm test`  | Execução dos testes unitários e de componente. |
+| **Build**  | `pnpm build` | Validação do export estático (SSG).            |
 
 ### Estratégia de Deploy
 
-Como o app utiliza `output: 'export'` do Next.js, o resultado do `pnpm build` é uma pasta `./out/` com HTML/CSS/JS **totalmente estáticos**, sem necessidade de servidor Node.js em produção.
+Como o app utiliza `output: 'export'` do Next.js, o resultado do `pnpm build` é uma pasta `./out/` com HTML/CSS/JS **totalmente estáticos**.
 
 ```
 pnpm build
   └── ./out/
         ├── index.html
         ├── aulas/
-        │   ├── index.html
         │   └── [id]/index.html   ← gerados via generateStaticParams
-        ├── admin/
-        │   └── dashboard/index.html
         └── _next/static/         ← assets JS/CSS
 ```
 
-Esta pasta pode ser servida por qualquer CDN estática (Vercel, Netlify, Azure Static Web Apps, GitHub Pages, etc).
-
-### Pipeline CI (planejado)
-
-![Visão CICD](docs/blog-aulas-cicd.png)
-
-| Etapa | Descrição |
-|---|---|
-| **Lint** | ESLint verifica padrões de código e imports |
-| **Testes** | Vitest executa unit + component tests |
-| **Build** | Valida que o export estático compila sem erros |
-| **Deploy** | Upload do `./out/` para o provedor de hosting |
-
-### Pipeline CD (planejado)
-
-O deploy contínuo seguirá o mesmo padrão do backend: **Conventional Commits** → **Release Please** para versionamento automático → pipeline de upload para hosting estático.
+Esta pasta é servida via CDN (ex: Azure Static Web Apps, Vercel ou GitHub Pages).
 
 ---
 
-## Convenções de Código
-
-### Commits (Conventional Commits)
-
-```
-feat(posting): add infinite scroll to public posts list
-fix(auth): redirect to intended page after login
-chore: update dependencies
-refactor(admin): extract PostForm into reusable component
-```
+---
 
 ---
 
 ## Links Úteis
 
-| Recurso | URL |
-|---|---|
-| Backend API | [tech-challenge-blog-aulas-backend.azurewebsites.net](https://tech-challenge-blog-aulas-backend.azurewebsites.net) |
-| Repositório Backend | [github.com/gfpaiva/tech-challenge-blog-aulas-backend](https://github.com/gfpaiva/tech-challenge-blog-aulas-backend) |
-| DaisyUI Components | [daisyui.com/components](https://daisyui.com/components/) |
-| TanStack Query Docs | [tanstack.com/query/v5](https://tanstack.com/query/v5) |
+| Recurso               | URL                                                                                                                                                      |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Backend API           | [tech-challenge-blog-aulas-backend.azurewebsites.net](https://tech-challenge-blog-aulas-backend.azurewebsites.net)                                       |
+| Repositório Backend   | [github.com/gfpaiva/tech-challenge-blog-aulas-backend](https://github.com/gfpaiva/tech-challenge-blog-aulas-backend)                                     |
+| DaisyUI Components    | [daisyui.com/components](https://daisyui.com/components/)                                                                                                |
+| TanStack Query Docs   | [tanstack.com/query/v5](https://tanstack.com/query/v5)                                                                                                   |
 | Next.js Static Export | [nextjs.org/docs/app/building-your-application/deploying/static-exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) |
