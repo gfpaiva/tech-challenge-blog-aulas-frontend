@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.1.0...v1.1.1) (2026-03-21)
+
+
+### Bug Fixes
+
+* edit page sync hydrated ([5007580](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/50075804fbae1e4705c9382589a48404097340b5))
+* edit page sync hydrated ([fec3de6](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/fec3de6beefa445f1f7f231097f8ea7f0532c0f3))
+
 ## [1.1.0](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.0.1...v1.1.0) (2026-03-21)
 
 
