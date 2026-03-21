@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.2.0...v1.3.0) (2026-03-21)
+
+
+### Features
+
+* add o11y ([cf4163a](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/cf4163add7ef433c90a473747e3c57b90b54b355))
+
+
+### Bug Fixes
+
+* readonly props ([a1fb628](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/a1fb628f66ca77d0ab2ad237a75788938308e172))
+
 ## [1.2.0](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.1.1...v1.2.0) (2026-03-21)
 
 
