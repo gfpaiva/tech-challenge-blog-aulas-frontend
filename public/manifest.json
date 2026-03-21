@@ -1,0 +1,21 @@
+{
+  "name": "Blog Aulas",
+  "short_name": "BlogAulas",
+  "description": "Plataforma de ensino e aprendizado.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#6A1B9A",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
