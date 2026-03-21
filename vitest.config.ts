@@ -12,7 +12,7 @@ export default defineConfig({
       provider: 'v8',
       include: ['src/common/**', 'src/features/**'],
       exclude: ['**/*.stories.*', '**/*.test.*', '**/types/**', '**/ports/**', '**/api/**', '**/index.ts', '**/*.d.ts'],
-      reporter: ['text', 'html'],
+      reporter: ['text', 'html', 'lcov'],
     },
   },
 });
