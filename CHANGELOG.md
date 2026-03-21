@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.0.1...v1.1.0) (2026-03-21)
+
+
+### Features
+
+* add favicon structure ([4d93649](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/4d9364911d4265784c118dc39a1ea49e6a171498))
+* add favicon structure ([213da5b](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/213da5b19a009e517cc74d33f9933640ab458109))
+
 ## [1.0.1](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.0.0...v1.0.1) (2026-03-21)
 
 
