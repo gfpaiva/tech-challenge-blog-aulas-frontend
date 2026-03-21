@@ -24,7 +24,7 @@ describe('CommentsSection Component', () => {
     // Authenticated
     vi.mocked(useAuthStoreAdapter).mockReturnValue(true);
 
-    render(<CommentsSection postId="1" initialComments={[]} />);
+    render(<CommentsSection postId="1" />);
 
     // Check for comment
     expect(screen.getByText('Great!')).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('CommentsSection Component', () => {
   it('renders login prompt when unauthenticated', async () => {
     vi.mocked(useAuthStoreAdapter).mockReturnValue(false);
 
-    render(<CommentsSection postId="1" initialComments={[]} />);
+    render(<CommentsSection postId="1" />);
 
     await waitFor(() => {
       expect(screen.getByText('Faça login')).toBeInTheDocument();

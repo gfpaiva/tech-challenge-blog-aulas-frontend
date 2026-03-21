@@ -37,7 +37,10 @@ export const useUpdatePost = (postDetail?: CreatePostResponse) => {
         content: postDetail.content,
       });
     }
-  }, [postDetail, form]);
+    // `form` é intencionalmente omitido: o objeto retornado pelo useForm do RHF
+    // é estável por design entre re-renders. Incluí-lo causaria looping infinito.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postDetail]);
 
   const mutation = useMutation({
     mutationFn: (data: CreatePostFormData) => {
