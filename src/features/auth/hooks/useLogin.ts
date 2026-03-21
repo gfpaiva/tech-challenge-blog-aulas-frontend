@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -13,6 +14,7 @@ import { appRoutes } from '@/common/config/routes';
 export const useLogin = () => {
   const { setAuth, clearAuth, isAuthenticated, user } = useAuthStoreAdapter();
   const router = useRouter();
+  const redirectPathRef = useRef<string | undefined>(undefined);
 
   const form = useForm<LoginRequest>({
     resolver: zodResolver(loginRequestSchema),
@@ -26,6 +28,7 @@ export const useLogin = () => {
     mutationFn: login,
     onSuccess: (data) => {
       setAuth(data.user, data.token);
+      router.push(redirectPathRef.current ?? appRoutes.adminDashboard.path);
     },
     onError: (error) => {
       console.error("Falha no login", error);
@@ -33,10 +36,8 @@ export const useLogin = () => {
   });
 
   const onSubmit = (data: LoginRequest, redirectPath?: string) => {
+    redirectPathRef.current = redirectPath;
     mutation.mutate(data);
-    if (mutation.isSuccess && redirectPath) {
-      router.push(redirectPath);
-    }
   };
 
   const logout = (redirectPath: string = appRoutes.home.path) => {

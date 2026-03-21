@@ -7,7 +7,19 @@ export interface Post {
   readTimeMin: number;
   authorConfig: {
     name: string;
+    role?: string;
     avatarUrl?: string; // Optional if no avatar provided
   };
   thumbnailUrl: string;
+}
+
+export interface PostDetail extends Post {
+  content: string;
+}
+
+export interface Comment {
+  id: string;
+  content: string;
+  authorName: string;
+  publishedAt: string; // formatted pt-BR date
 }

@@ -39,5 +39,7 @@ export const appRoutes = {
   postDetail: (id: string | number) => ({
     path: `/aulas/${id}`,
     isPrivate: false,
+    title: 'Detalhe da Aula | Blog Aulas',
+    description: 'Leia o conteúdo completo desta aula publicada pelos nossos professores.',
   }),
 } as const;
