@@ -1,5 +1,6 @@
 import { Metadata, Viewport } from 'next';
 import { Inter, Merriweather } from 'next/font/google';
+import Script from 'next/script';
 
 import './globals.css';
 import { ToastContainer } from '@/common/components/ui/Toast/ToastContainer';
@@ -40,6 +41,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" data-theme="blog">
+      <head>
+        <Script src="/js/newrelic.js" strategy="beforeInteractive" />
+      </head>
       <body className={`${inter.variable} ${merriweather.variable} antialiased`}>
         <QueryProvider>
           {children}

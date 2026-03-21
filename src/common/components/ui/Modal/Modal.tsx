@@ -2,7 +2,7 @@ import React from 'react';
 
 import { cn } from '@/common/lib/utils';
 
-export type ModalProps = {
+export type ModalProps = Readonly<{
   isOpen: boolean;
   onClose: () => void;
   title?: React.ReactNode;
@@ -10,7 +10,7 @@ export type ModalProps = {
   actions?: React.ReactNode;
   className?: string;
   hideCloseButton?: boolean;
-};
+}>;
 
 export function Modal({ isOpen, onClose, title, children, actions, className, hideCloseButton = false }: ModalProps) {
   if (!isOpen) return null;

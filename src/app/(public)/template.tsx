@@ -1,7 +1,11 @@
 import { Footer } from '@/common/components/Footer/Footer';
 import { Header } from '@/common/components/Header/Header';
 
-export default function Template({ children }: { children: React.ReactNode }) {
+type TemplateProps = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export default function Template({ children }: TemplateProps) {
   return (
     <>
       <Header />

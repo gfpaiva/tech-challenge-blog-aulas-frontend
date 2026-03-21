@@ -2,12 +2,14 @@ import type { ReactNode, ButtonHTMLAttributes } from 'react';
 
 import { cn } from '@/common/lib/utils';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
-  isCircle?: boolean;
-};
+type ButtonProps = Readonly<
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    children: ReactNode;
+    variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link' | 'outline';
+    size?: 'sm' | 'md' | 'lg';
+    isCircle?: boolean;
+  }
+>;
 
 const variantStyles = {
   primary: 'btn-primary',

@@ -2,9 +2,11 @@ import { forwardRef, TextareaHTMLAttributes } from 'react';
 
 import { cn } from '@/common/lib/utils';
 
-export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  error?: boolean;
-};
+export type TextareaProps = Readonly<
+  TextareaHTMLAttributes<HTMLTextAreaElement> & {
+    error?: boolean;
+  }
+>;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, error, ...props }, ref) => {
   return (

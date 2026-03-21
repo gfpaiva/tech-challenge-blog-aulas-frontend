@@ -8,9 +8,9 @@ import { CommentsSection } from '@/features/posting/components/CommentsSection/C
 import { PostContent } from '@/features/posting/components/PostContent/PostContent';
 import { PostDetailHero } from '@/features/posting/components/PostDetailHero/PostDetailHero';
 
-type PageProps = {
+type PageProps = Readonly<{
   params: Promise<{ id: string }>;
-};
+}>;
 
 // Generate static params from all existing published posts
 export async function generateStaticParams() {

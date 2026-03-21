@@ -10,9 +10,9 @@ import { PostSearchInput } from '../PostSearchInput/PostSearchInput';
 import { PublicPostsList } from '../PublicPostsList/PublicPostsList';
 import { SearchEmptyState } from '../SearchEmptyState/SearchEmptyState';
 
-type PublicPostsContainerProps = {
+type PublicPostsContainerProps = Readonly<{
   initialData: GetPublicPostsResult;
-};
+}>;
 
 export function PublicPostsContainer({ initialData }: PublicPostsContainerProps) {
   const [searchQuery, setSearchQuery] = useState('');

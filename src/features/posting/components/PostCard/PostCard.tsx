@@ -7,9 +7,9 @@ import { appRoutes } from '@/common/config/routes';
 
 import type { Post } from '../../types/post.type';
 
-type PostCardProps = {
+type PostCardProps = Readonly<{
   post: Post;
-};
+}>;
 
 export function PostCard({ post }: PostCardProps) {
   return (

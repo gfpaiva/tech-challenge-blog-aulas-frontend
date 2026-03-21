@@ -4,7 +4,11 @@ import { appRoutes } from '@/common/config/routes';
 import type { Post } from '../../types/post.type';
 import { PostCard } from '../PostCard/PostCard';
 
-export function LatestPosts({ posts }: { posts: Post[] }) {
+type LatestPostsProps = Readonly<{
+  posts: Post[];
+}>;
+
+export function LatestPosts({ posts }: LatestPostsProps) {
   return (
     <section id="aulas" className="py-20 bg-base-100">
       <div className="container mx-auto px-4">

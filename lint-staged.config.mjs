@@ -8,7 +8,7 @@ const buildEslintCommand = (filenames) => {
 };
 
 const config = {
-  '*.{ts,tsx}': [buildEslintCommand, "bash -c 'pnpm tsc --noEmit'"],
+  'src/**/*.{ts,tsx}': [buildEslintCommand, "bash -c 'pnpm tsc --noEmit'"],
   '*': ['prettier --write --ignore-unknown'],
 };
 

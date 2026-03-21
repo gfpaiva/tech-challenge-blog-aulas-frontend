@@ -1,6 +1,6 @@
-type PostContentProps = {
+type PostContentProps = Readonly<{
   content: string;
-};
+}>;
 
 export function PostContent({ content }: PostContentProps) {
   const paragraphs = content

@@ -12,9 +12,9 @@ import { useAuthStoreAdapter } from '@/infra/store/auth.adapter';
 import { usePostComments } from '../../hooks/usePostComments';
 import { CommentCard } from '../CommentCard/CommentCard';
 
-type CommentsSectionProps = {
+type CommentsSectionProps = Readonly<{
   postId: string;
-};
+}>;
 
 export function CommentsSection({ postId }: CommentsSectionProps) {
   const {

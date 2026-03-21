@@ -11,14 +11,14 @@ import { Textarea } from '@/common/components/ui/Textarea/Textarea';
 
 import { CreatePostFormData } from '../../mappers/create-post.mapper';
 
-export type PostFormProps = {
+export type PostFormProps = Readonly<{
   form: UseFormReturn<CreatePostFormData>;
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
   isPending: boolean;
   submitLabel?: string;
   title?: string;
   description?: string;
-};
+}>;
 
 export const PostForm = ({
   form,

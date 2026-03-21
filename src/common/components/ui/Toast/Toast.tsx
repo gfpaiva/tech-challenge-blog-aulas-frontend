@@ -5,9 +5,9 @@ import { cn } from '@/common/lib/utils';
 import { ToastMessage } from '@/common/ports/toast.port';
 import { useToastStore } from '@/infra/store/toast.adapter';
 
-type ToastProps = {
+type ToastProps = Readonly<{
   toast: ToastMessage;
-};
+}>;
 
 export function Toast({ toast }: ToastProps) {
   const removeToast = useToastStore((state) => state.remove);

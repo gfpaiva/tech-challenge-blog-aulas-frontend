@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from '@/common/lib/utils';
 
-type NavLinkProps = {
+type NavLinkProps = Readonly<{
   href: string;
   text: string;
   hasActiveHighlight?: boolean;
   className?: string;
   activeClassName?: string;
-};
+}>;
 
 export function NavLink({
   href,

@@ -2,11 +2,11 @@ import { Search } from 'lucide-react';
 
 import { Input } from '@/common/components/ui/Input/Input';
 
-type PostSearchInputProps = {
+type PostSearchInputProps = Readonly<{
   value: string;
   onChange: (val: string) => void;
   isLoading?: boolean;
-};
+}>;
 
 export function PostSearchInput({ value, onChange, isLoading }: PostSearchInputProps) {
   return (
