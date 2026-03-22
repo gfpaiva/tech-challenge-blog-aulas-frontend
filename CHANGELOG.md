@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.3.0...v1.3.1) (2026-03-22)
+
+
+### Bug Fixes
+
+* hide ui elements on mobile ([#12](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/issues/12)) ([bd9e562](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/commit/bd9e56233b6f45dccaf921c790f551c8eced6c31))
+
 ## [1.3.0](https://github.com/gfpaiva/tech-challenge-blog-aulas-frontend/compare/v1.2.0...v1.3.0) (2026-03-21)
 
 
