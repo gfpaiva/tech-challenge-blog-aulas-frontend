@@ -5,7 +5,7 @@ import { Input } from '../Input/Input';
 import { FormRow } from './FormRow';
 
 const meta = {
-  title: 'Common/UI/FormRow',
+  title: 'UI/FormRow',
   component: FormRow,
   tags: ['autodocs'],
   args: {
