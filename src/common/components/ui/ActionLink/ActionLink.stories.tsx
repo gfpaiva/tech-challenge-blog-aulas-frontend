@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ActionLink } from './ActionLink';
 
 const meta = {
-  title: 'Common/UI/ActionLink',
+  title: 'UI/ActionLink',
   component: ActionLink,
   parameters: {
     layout: 'centered',

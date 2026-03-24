@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Footer } from './Footer';
 
 const meta = {
-  title: 'Common/Layout/Footer',
+  title: 'UI/Footer',
   component: Footer,
   parameters: {
     layout: 'fullscreen',

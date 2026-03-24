@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PasswordInput } from './PasswordInput';
 
 const meta = {
-  title: 'Common/UI/PasswordInput',
+  title: 'UI/PasswordInput',
   component: PasswordInput,
   tags: ['autodocs'],
   args: {
